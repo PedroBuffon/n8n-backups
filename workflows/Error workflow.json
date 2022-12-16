@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord Errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-12-07T14:13:33.222Z",
+  "dataLoaded": false,
+  "id": 11,
+  "name": "Error workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "602106a7-14f6-471d-8912-73f7ab6fd541",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "channelId": "1052998535425040394",
+        "embed": true,
+        "title": "={{ $json[\"workflow\"]['name'] }}",
+        "url": "={{ $json[\"execution\"]['url'] }}",
+        "authorName": "N8N Error Log",
+        "authorUrl": "=",
+        "description": "=**Error Message:**\n{{ $json[\"execution\"]['error']['message'] }}",
+        "timestamp": "={{ $json[\"Date\"] }}"
+      },
+      "id": "08f45252-a2d2-4857-932e-8296bd22d9f8",
+      "name": "Discord Errors",
+      "type": "n8n-nodes-discord.discord",
+      "typeVersion": 1,
+      "position": [
+        620,
+        320
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "3",
+          "name": "Discord n8n Bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-12-15T17:20:37.666Z",
+  "versionId": "f03edfd4-bb17-4c9f-91dc-7a1180dafd6e"
+}
