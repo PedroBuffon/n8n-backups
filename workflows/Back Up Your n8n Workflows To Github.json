@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -176,7 +176,7 @@
     }
   },
   "createdAt": "2022-12-16T12:37:30.021Z",
-  "dataLoaded": false,
+  "dataLoaded": true,
   "id": 17,
   "name": "Back Up Your n8n Workflows To Github",
   "nodes": [
@@ -485,9 +485,14 @@
     }
   ],
   "pinData": {},
-  "settings": {},
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": false,
+    "callerPolicy": "any",
+    "errorWorkflow": "11"
+  },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-12-16T12:38:40.005Z",
-  "versionId": "c0e5a73f-1136-4c9d-8f7c-612b4f488e14"
+  "updatedAt": "2022-12-16T12:41:51.306Z",
+  "versionId": "fa5ecbd9-861e-4ae3-8e70-87786ca84217"
 }
