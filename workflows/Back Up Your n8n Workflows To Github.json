@@ -74,6 +74,11 @@
             "node": "n8n",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Discord Notification",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -482,6 +487,28 @@
         440
       ],
       "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "channelId": "1047877165716361276",
+        "embed": true,
+        "color": "#D31A1A",
+        "title": "Workflow Backup Started"
+      },
+      "id": "fe448433-ce26-41c4-be7b-d9b4661e36a9",
+      "name": "Discord Notification",
+      "type": "n8n-nodes-discord.discord",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        320
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "3",
+          "name": "Discord n8n Bot"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -493,6 +520,6 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-12-16T12:41:51.306Z",
-  "versionId": "fa5ecbd9-861e-4ae3-8e70-87786ca84217"
+  "updatedAt": "2022-12-16T14:33:44.001Z",
+  "versionId": "e7d07319-148e-46ce-8a53-de51f0872a8a"
 }
