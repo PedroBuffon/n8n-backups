@@ -1,27 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Cron": {
-      "main": [
-        [
-          {
-            "node": "Erai Raws RSS",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "SubsPlease RSS",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DKB RSS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTML Extract": {
       "main": [
         [
@@ -37,7 +16,56 @@
       "main": [
         [
           {
-            "node": "Only get new Erai Raws",
+            "node": "Discord Erai Raws",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "regexURL": {
+      "main": [
+        [
+          {
+            "node": "Filter SubsPlease",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter SubsPlease": {
+      "main": [
+        [
+          {
+            "node": "Discord SubsPlease",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Erai Raws": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Filter DKB": {
+      "main": [
+        [
+          {
+            "node": "Discord DKB",
             "type": "main",
             "index": 0
           }
@@ -66,93 +94,11 @@
         ]
       ]
     },
-    "regexURL": {
-      "main": [
-        [
-          {
-            "node": "Filter SubsPlease",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Only get new DKB": {
-      "main": [
-        [
-          {
-            "node": "Discord DKB",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "DKB RSS": {
       "main": [
         [
           {
             "node": "Filter DKB",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Filter SubsPlease": {
-      "main": [
-        [
-          {
-            "node": "Only get new SubsPlease",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Filter Erai Raws": {
-      "main": [
-        [
-          {
-            "node": "HTML Extract",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Filter DKB": {
-      "main": [
-        [
-          {
-            "node": "Only get new DKB",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Only get new SubsPlease": {
-      "main": [
-        [
-          {
-            "node": "Discord SubsPlease",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Only get new Erai Raws": {
-      "main": [
-        [
-          {
-            "node": "Discord Erai Raws",
             "type": "main",
             "index": 0
           }
@@ -165,27 +111,6 @@
   "id": 3,
   "name": "RSS to Discord",
   "nodes": [
-    {
-      "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 5,
-              "unit": "minutes"
-            }
-          ]
-        }
-      },
-      "name": "Cron",
-      "type": "n8n-nodes-base.cron",
-      "position": [
-        560,
-        460
-      ],
-      "typeVersion": 1,
-      "id": "0105e4a9-4434-475f-87d8-544c0dc31e34"
-    },
     {
       "parameters": {
         "dataPropertyName": "content",
@@ -227,20 +152,6 @@
     },
     {
       "parameters": {
-        "url": "https://www.erai-raws.info/feed/?res=1080p&type=torrent&0879fd62733b8db8535eb1be24e23f6d"
-      },
-      "name": "Erai Raws RSS",
-      "type": "n8n-nodes-base.rssFeedRead",
-      "position": [
-        800,
-        280
-      ],
-      "executeOnce": true,
-      "typeVersion": 1,
-      "id": "2f2c399c-e349-4da7-b363-a510c919f1bd"
-    },
-    {
-      "parameters": {
         "channelId": "1041723229569552484",
         "embed": true,
         "color": "#D31A1A",
@@ -256,7 +167,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1820,
+        1620,
         260
       ],
       "credentials": {
@@ -265,20 +176,6 @@
           "name": "Discord n8n Bot"
         }
       }
-    },
-    {
-      "parameters": {
-        "url": "https://subsplease.org/rss/?t&r=1080"
-      },
-      "name": "SubsPlease RSS",
-      "type": "n8n-nodes-base.rssFeedRead",
-      "position": [
-        800,
-        460
-      ],
-      "executeOnce": true,
-      "typeVersion": 1,
-      "id": "b89b956a-2673-41aa-95c9-2634a91e2ff4"
     },
     {
       "parameters": {
@@ -308,7 +205,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1600,
+        1380,
         460
       ],
       "credentials": {
@@ -334,7 +231,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1380,
+        1220,
         640
       ],
       "credentials": {
@@ -343,32 +240,6 @@
           "name": "Discord n8n Bot"
         }
       }
-    },
-    {
-      "parameters": {
-        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"Date\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['Date']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
-      },
-      "name": "Only get new DKB",
-      "type": "n8n-nodes-base.function",
-      "position": [
-        1180,
-        640
-      ],
-      "typeVersion": 1,
-      "id": "5152795e-5b8e-4d8b-84bc-d6238cc79ee0"
-    },
-    {
-      "parameters": {
-        "url": "https://nyaa.si/?page=rss&u=DKB0512"
-      },
-      "id": "d694013c-1ad2-454f-b45b-de575689ef89",
-      "name": "DKB RSS",
-      "type": "n8n-nodes-base.rssFeedRead",
-      "typeVersion": 1,
-      "position": [
-        800,
-        640
-      ]
     },
     {
       "parameters": {
@@ -476,29 +347,69 @@
     },
     {
       "parameters": {
-        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"Date\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['Date']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://www.erai-raws.info/feed/?res=1080p&type=torrent&0879fd62733b8db8535eb1be24e23f6d"
       },
-      "name": "Only get new SubsPlease",
-      "type": "n8n-nodes-base.function",
-      "position": [
-        1380,
-        460
-      ],
+      "id": "2d09201c-82cf-4b4c-b1ea-b2dcf8195ca3",
+      "name": "Erai Raws RSS",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
-      "id": "4212a4f9-fc39-4b0b-9f3e-5dfd55101305"
+      "position": [
+        800,
+        280
+      ]
     },
     {
       "parameters": {
-        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"Date\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['Date']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://subsplease.org/rss/?t&r=1080"
       },
-      "name": "Only get new Erai Raws",
-      "type": "n8n-nodes-base.function",
-      "position": [
-        1600,
-        260
-      ],
+      "id": "41d33b6d-9bc5-42fe-89e1-efd40f3f70c2",
+      "name": "SubsPlease RSS",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
-      "id": "6cfda168-d4fc-4953-83b2-e6249d6147b0"
+      "position": [
+        800,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://nyaa.si/?page=rss&u=DKB0512"
+      },
+      "id": "4fec1cb5-cbed-4e76-a6ce-4099f5cb0453",
+      "name": "DKB RSS",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
+      "typeVersion": 1,
+      "position": [
+        800,
+        640
+      ]
     }
   ],
   "pinData": {},
@@ -512,6 +423,12 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "2022-12-21T14:51:15.000Z",
+        "2022-12-21T14:36:25.000Z",
+        "2022-12-21T14:30:35.000Z",
+        "2022-12-21T14:30:33.000Z",
+        "2022-12-21T14:31:54.000Z",
+        "2022-12-21T14:31:37.000Z",
         "2022-12-20T18:20:33.000Z",
         "2022-12-20T17:07:59.000Z",
         "2022-12-20T17:03:34.000Z",
@@ -1676,9 +1593,18 @@
         "Mon, 07 Nov 2022 09:41:28 +0000",
         "Mon, 07 Nov 2022 09:40:30 +0000"
       ]
+    },
+    "node:Erai Raws RSS": {
+      "lastTimeChecked": "2022-12-21T16:05:28Z"
+    },
+    "node:SubsPlease RSS": {
+      "lastTimeChecked": "2022-12-21T16:05:42Z"
+    },
+    "node:DKB RSS": {
+      "lastTimeChecked": "2022-12-21T16:05:10Z"
     }
   },
   "tags": [],
-  "updatedAt": "2022-12-21T05:00:53.096Z",
-  "versionId": "361c078e-8480-4491-8844-d946e73427d3"
+  "updatedAt": "2022-12-21T16:05:43.869Z",
+  "versionId": "25929f01-0b7f-4172-beb5-4ffffc02faf5"
 }
