@@ -1,17 +1,6 @@
 {
   "active": true,
   "connections": {
-    "RSS Read": {
-      "main": [
-        [
-          {
-            "node": "Filter Anime News",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTTP Request": {
       "main": [
         [
@@ -30,22 +19,6 @@
             "node": "Set",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Only get new items": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
           }
         ]
       ]
@@ -72,22 +45,38 @@
         ]
       ]
     },
-    "Cron": {
+    "Filter Anime News": {
       "main": [
         [
           {
-            "node": "RSS Read",
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS Feed Trigger": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Filter Anime News": {
+    "Split In Batches": {
       "main": [
         [
           {
-            "node": "Only get new items",
+            "node": "Filter Anime News",
             "type": "main",
             "index": 0
           }
@@ -100,32 +89,6 @@
   "id": 14,
   "name": "Anime News",
   "nodes": [
-    {
-      "parameters": {
-        "url": "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=w"
-      },
-      "id": "cf55a4c9-1d44-4965-9c8f-df7d2f671a07",
-      "name": "RSS Read",
-      "type": "n8n-nodes-base.rssFeedRead",
-      "typeVersion": 1,
-      "position": [
-        340,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"Date\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['Date']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
-      },
-      "name": "Only get new items",
-      "type": "n8n-nodes-base.function",
-      "position": [
-        740,
-        320
-      ],
-      "typeVersion": 1,
-      "id": "250a9675-a615-495e-8694-3f23bb3fa93b"
-    },
     {
       "parameters": {
         "values": {
@@ -232,27 +195,6 @@
     },
     {
       "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 5,
-              "unit": "minutes"
-            }
-          ]
-        }
-      },
-      "name": "Cron",
-      "type": "n8n-nodes-base.cron",
-      "position": [
-        160,
-        320
-      ],
-      "typeVersion": 1,
-      "id": "75a90c0d-adbf-4ed4-b9b3-eeec93f824b4"
-    },
-    {
-      "parameters": {
         "keepOnlySet": true,
         "values": {
           "string": [
@@ -266,7 +208,7 @@
             },
             {
               "name": "Date",
-              "value": "={{ $json[\"isoDate\"] }}"
+              "value": "={{ $json[\"pubDate\"] }}"
             },
             {
               "name": "contentSnippet",
@@ -287,8 +229,46 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        540,
-        320
+        740,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us"
+      },
+      "id": "f34f4c1a-6c10-48b0-9405-9d98198b07fb",
+      "name": "RSS Feed Trigger",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {
+          "reset": true
+        }
+      },
+      "id": "89c17768-3eb6-49b5-a3a9-94b961d9d972",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        580,
+        300
       ]
     }
   ],
@@ -301,6 +281,12 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "2022-12-21T14:41:53.000Z",
+        "2022-12-21T14:00:00.000Z",
+        "2022-12-21T12:00:00.000Z",
+        "2022-12-21T08:28:39.000Z",
+        "2022-12-21T07:53:03.000Z",
+        "2022-12-21T05:47:58.000Z",
         "2022-12-21T02:27:39.000Z",
         "2022-12-20T22:00:00.000Z",
         "2022-12-20T20:37:10.000Z",
@@ -608,9 +594,12 @@
         "2022-12-08T12:47:25.000Z",
         "2022-12-08T11:25:06.000Z"
       ]
+    },
+    "node:RSS Feed Trigger": {
+      "lastTimeChecked": "2022-12-21T16:52:52Z"
     }
   },
   "tags": [],
-  "updatedAt": "2022-12-21T05:00:50.790Z",
-  "versionId": "181c3291-67ad-4aef-a67b-f02bd29cec3f"
+  "updatedAt": "2022-12-21T16:52:53.588Z",
+  "versionId": "d17c04e7-fed4-4da5-bd85-8c507ebc253c"
 }
