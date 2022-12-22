@@ -65,17 +65,6 @@
       "main": [
         [
           {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
             "node": "Filter Anime News",
             "type": "main",
             "index": 0
@@ -106,7 +95,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1300,
+        1520,
         180
       ]
     },
@@ -119,7 +108,7 @@
       "name": "HTTP Request",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        940,
+        1160,
         180
       ],
       "typeVersion": 1,
@@ -143,7 +132,7 @@
       "name": "HTML Extract",
       "type": "n8n-nodes-base.htmlExtract",
       "position": [
-        1120,
+        1340,
         180
       ],
       "typeVersion": 1,
@@ -160,7 +149,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1500,
+        1720,
         300
       ]
     },
@@ -183,7 +172,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1720,
+        1940,
         300
       ],
       "credentials": {
@@ -229,7 +218,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        740,
+        960,
         300
       ]
     },
@@ -244,30 +233,14 @@
             }
           ]
         },
-        "feedUrl": "https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us"
+        "feedUrl": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=w"
       },
       "id": "f34f4c1a-6c10-48b0-9405-9d98198b07fb",
       "name": "RSS Feed Trigger",
       "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
       "position": [
-        420,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {
-          "reset": true
-        }
-      },
-      "id": "89c17768-3eb6-49b5-a3a9-94b961d9d972",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        580,
+        760,
         300
       ]
     }
@@ -596,10 +569,11 @@
       ]
     },
     "node:RSS Feed Trigger": {
-      "lastTimeChecked": "2022-12-21T16:52:52Z"
+      "lastTimeChecked": "2022-12-22T03:25:12Z"
     }
   },
   "tags": [],
-  "updatedAt": "2022-12-21T16:52:53.588Z",
-  "versionId": "d17c04e7-fed4-4da5-bd85-8c507ebc253c"
+  "triggerCount": 1,
+  "updatedAt": "2022-12-22T03:25:12.740Z",
+  "versionId": "1217205a-c12a-4f81-bd2e-b9311d85e1a2"
 }
