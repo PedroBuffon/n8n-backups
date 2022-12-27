@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "HTTP Request": {
       "main": [
@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Split In Batches",
+            "node": "Discord Anime News",
             "type": "main",
             "index": 0
           }
@@ -49,36 +49,9 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "Merge",
             "type": "main",
             "index": 1
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Discord Anime News",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Discord Anime News": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -88,6 +61,11 @@
         [
           {
             "node": "Filter Anime News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -102,11 +80,12 @@
   "nodes": [
     {
       "parameters": {
+        "keepOnlySet": true,
         "values": {
           "string": [
             {
               "name": "imgURL",
-              "value": "={{ $json[\"imgURL\"][5] }}"
+              "value": "={{  $json[\"imgURL\"][5]  }}"
             }
           ]
         },
@@ -176,7 +155,8 @@
       "position": [
         1720,
         300
-      ]
+      ],
+      "retryOnFail": false
     },
     {
       "parameters": {
@@ -197,7 +177,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        2020,
+        1940,
         300
       ],
       "credentials": {
@@ -247,8 +227,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        960,
-        300
+        1140,
+        360
       ]
     },
     {
@@ -257,36 +237,20 @@
           "item": [
             {
               "mode": "everyX",
-              "value": 5,
+              "value": 10,
               "unit": "minutes"
             }
           ]
         },
-        "feedUrl": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=w"
+        "feedUrl": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us"
       },
       "id": "f34f4c1a-6c10-48b0-9405-9d98198b07fb",
       "name": "RSS Feed Trigger",
       "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
       "position": [
-        760,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {
-          "reset": false
-        }
-      },
-      "id": "95ee02e6-e588-4536-b57a-41803a12fe2e",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        1880,
-        300
+        920,
+        260
       ]
     }
   ],
@@ -614,11 +578,11 @@
       ]
     },
     "node:RSS Feed Trigger": {
-      "lastTimeChecked": "2022-12-23T12:36:42Z"
+      "lastTimeChecked": "2022-12-27T16:32:56Z"
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2022-12-23T12:54:38.303Z",
-  "versionId": "d6658773-fc24-4f25-a720-c3ef2debdb96"
+  "updatedAt": "2022-12-27T16:32:57.216Z",
+  "versionId": "45922c99-2ee4-4104-9dd6-623d67fcd009"
 }
