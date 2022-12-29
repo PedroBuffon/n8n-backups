@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Discord Anime News",
+            "node": "Code",
             "type": "main",
             "index": 0
           }
@@ -56,16 +56,87 @@
         ]
       ]
     },
-    "RSS Feed Trigger": {
+    "Only get new RSS": {
       "main": [
         [
           {
-            "node": "Filter Anime News",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           },
           {
+            "node": "Filter Anime News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Only get new RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Discord Anime News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord Anime News": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Feed Trigger": {
+      "main": [
+        [
+          {
             "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter Anime News",
             "type": "main",
             "index": 0
           }
@@ -96,8 +167,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1520,
-        180
+        1560,
+        140
       ]
     },
     {
@@ -112,8 +183,8 @@
       "name": "HTTP Request",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        1140,
-        180
+        1180,
+        140
       ],
       "typeVersion": 1,
       "id": "1d0a59a1-e6a2-4d86-9b2f-4dcf22e53a0b"
@@ -136,8 +207,8 @@
       "name": "HTML Extract",
       "type": "n8n-nodes-base.htmlExtract",
       "position": [
-        1340,
-        180
+        1380,
+        140
       ],
       "typeVersion": 1,
       "id": "1a7930d6-57b3-45e7-a815-3445e68b6491"
@@ -153,7 +224,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1720,
+        1760,
         300
       ],
       "retryOnFail": false
@@ -177,7 +248,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1940,
+        2340,
         300
       ],
       "credentials": {
@@ -227,8 +298,84 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1140,
-        360
+        1180,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"pubDate\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['pubDate']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
+      },
+      "name": "Only get new RSS",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        860,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "9323a043-9903-4363-831c-fc38d1094331",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us"
+      },
+      "id": "0c787cd6-55e0-4e9d-9383-e632534bdcd4",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        680,
+        240
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "d09af11e-f583-4661-ace8-02a1012b6a66",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        240
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all();"
+      },
+      "id": "d68e86ee-829b-4708-875a-1cc0350f1f46",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "90457b9d-7ca6-4a7d-950c-0085f71f95f2",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        300
       ]
     },
     {
@@ -244,13 +391,13 @@
         },
         "feedUrl": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us"
       },
-      "id": "f34f4c1a-6c10-48b0-9405-9d98198b07fb",
+      "id": "e5e7a4ed-add4-481f-92b4-82d4c94bce9a",
       "name": "RSS Feed Trigger",
       "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
       "position": [
-        920,
-        260
+        860,
+        100
       ]
     }
   ],
@@ -263,6 +410,46 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Wed, 28 Dec 2022 14:10:59 -0500",
+        "Wed, 28 Dec 2022 12:45:33 -0500",
+        "Wed, 28 Dec 2022 12:30:55 -0500",
+        "Wed, 28 Dec 2022 12:12:37 -0500",
+        "Wed, 28 Dec 2022 12:02:00 -0500",
+        "Wed, 28 Dec 2022 05:29:06 -0500",
+        "Wed, 28 Dec 2022 02:42:25 -0500",
+        "Tue, 27 Dec 2022 23:37:04 -0500",
+        "Tue, 27 Dec 2022 20:48:57 -0500",
+        "Tue, 27 Dec 2022 07:04:58 -0500",
+        "Tue, 27 Dec 2022 06:23:01 -0500",
+        "Tue, 27 Dec 2022 06:04:24 -0500",
+        "Tue, 27 Dec 2022 05:43:27 -0500",
+        "Tue, 27 Dec 2022 05:00:38 -0500",
+        "Tue, 27 Dec 2022 04:35:11 -0500",
+        "Tue, 27 Dec 2022 04:03:55 -0500",
+        "Tue, 27 Dec 2022 03:41:41 -0500",
+        "Tue, 27 Dec 2022 03:17:23 -0500",
+        "Tue, 27 Dec 2022 01:01:54 -0500",
+        "Tue, 27 Dec 2022 00:45:00 -0500",
+        "Tue, 27 Dec 2022 00:28:23 -0500",
+        "Mon, 26 Dec 2022 21:19:08 -0500",
+        "Mon, 26 Dec 2022 14:35:54 -0500",
+        "Mon, 26 Dec 2022 13:56:11 -0500",
+        "Mon, 26 Dec 2022 13:35:20 -0500",
+        "Mon, 26 Dec 2022 13:19:47 -0500",
+        "Mon, 26 Dec 2022 10:00:00 -0500",
+        "Mon, 26 Dec 2022 07:05:16 -0500",
+        "Mon, 26 Dec 2022 06:55:26 -0500",
+        "Mon, 26 Dec 2022 06:26:27 -0500",
+        "Mon, 26 Dec 2022 06:02:43 -0500",
+        "Mon, 26 Dec 2022 05:28:02 -0500",
+        "Mon, 26 Dec 2022 05:15:00 -0500",
+        "Mon, 26 Dec 2022 05:00:00 -0500",
+        "Mon, 26 Dec 2022 04:45:00 -0500",
+        "Mon, 26 Dec 2022 04:30:00 -0500",
+        "Mon, 26 Dec 2022 04:00:00 -0500",
+        "Mon, 26 Dec 2022 03:42:55 -0500",
+        "Mon, 26 Dec 2022 03:31:38 -0500",
+        "Mon, 26 Dec 2022 03:08:10 -0500",
         "2022-12-21T14:41:53.000Z",
         "2022-12-21T14:00:00.000Z",
         "2022-12-21T12:00:00.000Z",
@@ -578,11 +765,14 @@
       ]
     },
     "node:RSS Feed Trigger": {
-      "lastTimeChecked": "2022-12-27T16:32:56Z"
+      "lastTimeChecked": "2022-12-29T00:37:06Z"
+    },
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
     }
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2022-12-27T16:32:57.216Z",
-  "versionId": "45922c99-2ee4-4104-9dd6-623d67fcd009"
+  "updatedAt": "2022-12-29T00:37:06.628Z",
+  "versionId": "e92e1146-1dfc-4879-8acc-95c85d548925"
 }
