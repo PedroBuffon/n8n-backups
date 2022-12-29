@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Split In Batches",
             "type": "main",
             "index": 0
           }
@@ -88,17 +88,6 @@
         [
           {
             "node": "RSS Read",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
             "type": "main",
             "index": 0
           }
@@ -248,7 +237,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        2340,
+        2180,
         300
       ],
       "credentials": {
@@ -313,8 +302,7 @@
         240
       ],
       "typeVersion": 1,
-      "id": "9323a043-9903-4363-831c-fc38d1094331",
-      "disabled": true
+      "id": "9323a043-9903-4363-831c-fc38d1094331"
     },
     {
       "parameters": {
@@ -327,8 +315,7 @@
       "position": [
         680,
         240
-      ],
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -348,20 +335,6 @@
       "position": [
         500,
         240
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "jsCode": "return $input.all();"
-      },
-      "id": "d68e86ee-829b-4708-875a-1cc0350f1f46",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1960,
-        300
       ]
     },
     {
@@ -374,7 +347,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 1,
       "position": [
-        2140,
+        1980,
         300
       ]
     },
@@ -397,8 +370,9 @@
       "typeVersion": 1,
       "position": [
         860,
-        100
-      ]
+        80
+      ],
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -410,6 +384,9 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Thu, 29 Dec 2022 05:08:25 -0500",
+        "Thu, 29 Dec 2022 00:45:52 -0500",
+        "Wed, 28 Dec 2022 21:32:02 -0500",
         "Wed, 28 Dec 2022 14:10:59 -0500",
         "Wed, 28 Dec 2022 12:45:33 -0500",
         "Wed, 28 Dec 2022 12:30:55 -0500",
@@ -773,6 +750,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2022-12-29T00:37:06.628Z",
-  "versionId": "e92e1146-1dfc-4879-8acc-95c85d548925"
+  "updatedAt": "2022-12-29T16:52:14.955Z",
+  "versionId": "2430734b-6cd5-4206-8db4-48884f4aec90"
 }
