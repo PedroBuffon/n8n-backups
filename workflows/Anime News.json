@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "HTTP Request": {
       "main": [
@@ -323,7 +323,7 @@
           "interval": [
             {
               "field": "minutes",
-              "minutesInterval": 10
+              "minutesInterval": 20
             }
           ]
         }
@@ -384,6 +384,7 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Sat, 31 Dec 2022 04:04:15 -0500",
         "Fri, 30 Dec 2022 23:07:54 -0500",
         "Fri, 30 Dec 2022 22:53:16 -0500",
         "Fri, 30 Dec 2022 19:05:00 -0500",
@@ -769,6 +770,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2022-12-31T04:55:19.350Z",
-  "versionId": "57fcfd91-8ddf-4e35-b1bc-6eb1c6f0c968"
+  "updatedAt": "2022-12-31T14:05:11.278Z",
+  "versionId": "8e6309c6-9f5a-4ba0-94fe-39d35d21963c"
 }
