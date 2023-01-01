@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "HTTP Request": {
       "main": [
@@ -220,7 +220,7 @@
     },
     {
       "parameters": {
-        "channelId": "1032390591465656340",
+        "channelId": "1058807311877034124",
         "embed": true,
         "color": "#1289D9",
         "title": "={{ $json[\"title\"] }}",
@@ -384,6 +384,14 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Sat, 31 Dec 2022 22:33:44 -0500",
+        "Sat, 31 Dec 2022 19:43:33 -0500",
+        "Sat, 31 Dec 2022 18:07:43 -0500",
+        "Sat, 31 Dec 2022 16:44:54 -0500",
+        "Sat, 31 Dec 2022 16:26:27 -0500",
+        "Sat, 31 Dec 2022 15:58:53 -0500",
+        "Sat, 31 Dec 2022 12:08:47 -0500",
+        "Sat, 31 Dec 2022 11:52:45 -0500",
         "Sat, 31 Dec 2022 04:04:15 -0500",
         "Fri, 30 Dec 2022 23:07:54 -0500",
         "Fri, 30 Dec 2022 22:53:16 -0500",
@@ -770,6 +778,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2022-12-31T14:05:11.278Z",
-  "versionId": "8e6309c6-9f5a-4ba0-94fe-39d35d21963c"
+  "updatedAt": "2023-01-01T04:42:39.612Z",
+  "versionId": "85d471ad-f891-4a23-861f-9258b3b8f7fa"
 }
