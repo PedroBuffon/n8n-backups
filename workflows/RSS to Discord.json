@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Discord Erai Raws",
+            "node": "Split In Batches",
             "type": "main",
             "index": 0
           }
@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Discord SubsPlease",
+            "node": "Split In Batches1",
             "type": "main",
             "index": 0
           }
@@ -65,7 +65,7 @@
       "main": [
         [
           {
-            "node": "Discord DKB",
+            "node": "Split In Batches2",
             "type": "main",
             "index": 0
           }
@@ -99,6 +99,72 @@
         [
           {
             "node": "Filter DKB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord Erai Raws": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Discord Erai Raws",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Discord SubsPlease",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord SubsPlease": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches2": {
+      "main": [
+        [
+          {
+            "node": "Discord DKB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord DKB": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
             "type": "main",
             "index": 0
           }
@@ -167,7 +233,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1620,
+        1720,
         260
       ],
       "credentials": {
@@ -187,7 +253,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        460
+        480
       ]
     },
     {
@@ -205,8 +271,8 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1380,
-        460
+        1540,
+        480
       ],
       "credentials": {
         "discordApi": {
@@ -231,8 +297,8 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1220,
-        640
+        1320,
+        720
       ],
       "credentials": {
         "discordApi": {
@@ -270,7 +336,7 @@
       "typeVersion": 1,
       "position": [
         1180,
-        460
+        480
       ]
     },
     {
@@ -342,7 +408,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        640
+        720
       ]
     },
     {
@@ -386,7 +452,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        460
+        480
       ]
     },
     {
@@ -408,7 +474,49 @@
       "typeVersion": 1,
       "position": [
         800,
-        640
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "bdd5692b-95fe-4493-977c-7a06695a8f43",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "8f3ffa0a-30fa-4942-b965-0005fd4cc913",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "fe05e804-d436-4139-ac71-37211707d9e1",
+      "name": "Split In Batches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        720
       ]
     }
   ],
@@ -1595,17 +1703,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-03T00:54:54Z"
+      "lastTimeChecked": "2023-01-03T14:55:23Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-03T00:54:56Z"
+      "lastTimeChecked": "2023-01-03T14:55:25Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-03T00:54:58Z"
+      "lastTimeChecked": "2023-01-03T14:55:25Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-03T00:54:59.225Z",
-  "versionId": "9d0e0201-be26-4f37-99ab-cf95bd43fe04"
+  "updatedAt": "2023-01-03T14:55:26.905Z",
+  "versionId": "e1f97677-226a-4357-8d25-a37a956feec2"
 }
