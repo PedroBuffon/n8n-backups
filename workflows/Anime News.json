@@ -323,7 +323,7 @@
           "interval": [
             {
               "field": "minutes",
-              "minutesInterval": 20
+              "minutesInterval": 10
             }
           ]
         }
@@ -384,6 +384,10 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Tue, 03 Jan 2023 19:04:24 -0500",
+        "Tue, 03 Jan 2023 17:00:00 -0500",
+        "Tue, 03 Jan 2023 13:00:00 -0500",
+        "Tue, 03 Jan 2023 12:00:00 -0500",
         "Tue, 03 Jan 2023 07:05:32 -0500",
         "Tue, 03 Jan 2023 06:06:38 -0500",
         "Tue, 03 Jan 2023 05:27:02 -0500",
@@ -797,6 +801,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-01-03T16:55:15.132Z",
-  "versionId": "85d471ad-f891-4a23-861f-9258b3b8f7fa"
+  "updatedAt": "2023-01-04T05:00:19.249Z",
+  "versionId": "55329696-742b-40e8-8cc5-2cb4353128b4"
 }
