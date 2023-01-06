@@ -14,8 +14,7 @@
     }
   },
   "createdAt": "2022-12-07T14:13:33.222Z",
-  "dataLoaded": false,
-  "id": 11,
+  "id": "11",
   "name": "Error workflow",
   "nodes": [
     {
