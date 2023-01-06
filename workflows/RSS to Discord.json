@@ -173,8 +173,7 @@
     }
   },
   "createdAt": "2022-11-14T14:23:31.634Z",
-  "dataLoaded": false,
-  "id": 3,
+  "id": "3",
   "name": "RSS to Discord",
   "nodes": [
     {
@@ -1703,17 +1702,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-05T16:45:39Z"
+      "lastTimeChecked": "2023-01-06T01:35:40Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-05T16:45:24Z"
+      "lastTimeChecked": "2023-01-06T01:35:29Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-05T16:45:01Z"
+      "lastTimeChecked": "2023-01-06T01:40:19Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-05T16:45:40.389Z",
+  "updatedAt": "2023-01-06T01:40:20.429Z",
   "versionId": "e1f97677-226a-4357-8d25-a37a956feec2"
 }
