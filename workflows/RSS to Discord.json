@@ -123,6 +123,11 @@
             "node": "Discord Erai Raws",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -517,6 +522,27 @@
         1160,
         720
       ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases(nome,link,pubdate) values (\"{{ $json[\"Title\"] }}\", \"{{ $json[\"URL\"] }}\", \"{{ $json[\"Date\"] }}\")",
+        "additionalFields": {}
+      },
+      "id": "d4e704c2-958b-40ac-8a34-3d5c419cec7d",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        80
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "1",
+          "name": "Postgres torrents"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -1702,17 +1728,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-11T00:15:57Z"
+      "lastTimeChecked": "2023-01-11T16:58:01Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-11T00:15:20Z"
+      "lastTimeChecked": "2023-01-11T16:58:02Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-11T00:15:47Z"
+      "lastTimeChecked": "2023-01-11T16:58:04Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-11T00:15:58.535Z",
-  "versionId": "e1f97677-226a-4357-8d25-a37a956feec2"
+  "updatedAt": "2023-01-11T16:58:05.037Z",
+  "versionId": "1a08d8b4-16c1-4801-a6fe-fa7eb39aa663"
 }
