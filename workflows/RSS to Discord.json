@@ -139,6 +139,11 @@
             "node": "Discord SubsPlease",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -159,6 +164,11 @@
         [
           {
             "node": "Discord DKB",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres2",
             "type": "main",
             "index": 0
           }
@@ -257,7 +267,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        480
+        600
       ]
     },
     {
@@ -276,7 +286,7 @@
       "typeVersion": 1,
       "position": [
         1540,
-        480
+        600
       ],
       "credentials": {
         "discordApi": {
@@ -302,7 +312,7 @@
       "typeVersion": 1,
       "position": [
         1320,
-        720
+        940
       ],
       "credentials": {
         "discordApi": {
@@ -340,7 +350,7 @@
       "typeVersion": 1,
       "position": [
         1180,
-        480
+        600
       ]
     },
     {
@@ -412,7 +422,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        720
+        940
       ]
     },
     {
@@ -456,7 +466,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        480
+        600
       ]
     },
     {
@@ -478,7 +488,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        720
+        940
       ]
     },
     {
@@ -506,7 +516,7 @@
       "typeVersion": 1,
       "position": [
         1360,
-        480
+        600
       ]
     },
     {
@@ -520,13 +530,13 @@
       "typeVersion": 1,
       "position": [
         1160,
-        720
+        940
       ]
     },
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "=insert into public.releases(nome,link,pubdate) values (\"{{ $json[\"Title\"] }}\", \"{{ $json[\"URL\"] }}\", \"{{ $json[\"Date\"] }}\")",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"Title\"] }} ', ' {{ $json[\"URL\"] }} ', ' {{ $json[\"Date\"] }} ')",
         "additionalFields": {}
       },
       "id": "d4e704c2-958b-40ac-8a34-3d5c419cec7d",
@@ -535,7 +545,49 @@
       "typeVersion": 1,
       "position": [
         1720,
-        80
+        100
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "1",
+          "name": "Postgres torrents"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "additionalFields": {}
+      },
+      "id": "4925c2ac-b12a-4ffe-8346-ff207e00be79",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        440
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "1",
+          "name": "Postgres torrents"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "additionalFields": {}
+      },
+      "id": "7e02b7bd-2036-4148-9ad8-a0f791b1345c",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        780
       ],
       "credentials": {
         "postgres": {
@@ -1728,17 +1780,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-11T16:58:01Z"
+      "lastTimeChecked": "2023-01-12T02:41:32Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-11T16:58:02Z"
+      "lastTimeChecked": "2023-01-12T02:41:33Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-11T16:58:04Z"
+      "lastTimeChecked": "2023-01-12T02:41:35Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-11T16:58:05.037Z",
-  "versionId": "1a08d8b4-16c1-4801-a6fe-fa7eb39aa663"
+  "updatedAt": "2023-01-12T02:41:36.269Z",
+  "versionId": "8f591087-4a3f-4df6-8526-0e47bff1f0a8"
 }
