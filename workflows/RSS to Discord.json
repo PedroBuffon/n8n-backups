@@ -536,7 +536,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"Title\"] }} ', ' {{ $json[\"URL\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
         "additionalFields": {}
       },
       "id": "d4e704c2-958b-40ac-8a34-3d5c419cec7d",
@@ -560,13 +560,13 @@
         "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
         "additionalFields": {}
       },
-      "id": "4925c2ac-b12a-4ffe-8346-ff207e00be79",
-      "name": "Postgres1",
+      "id": "64244757-2e17-45ed-a5e6-afb352cde949",
+      "name": "Postgres2",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        1540,
-        440
+        1320,
+        780
       ],
       "credentials": {
         "postgres": {
@@ -581,13 +581,13 @@
         "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
         "additionalFields": {}
       },
-      "id": "7e02b7bd-2036-4148-9ad8-a0f791b1345c",
-      "name": "Postgres2",
+      "id": "b6814b5a-7193-4824-ae1c-be66b3041b4e",
+      "name": "Postgres1",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        1320,
-        780
+        1540,
+        440
       ],
       "credentials": {
         "postgres": {
@@ -1780,17 +1780,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-13T04:20:31Z"
+      "lastTimeChecked": "2023-01-13T15:00:57Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-13T04:20:48Z"
+      "lastTimeChecked": "2023-01-13T15:05:21Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-13T04:15:57Z"
+      "lastTimeChecked": "2023-01-13T15:00:49Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-13T04:20:49.747Z",
-  "versionId": "8f591087-4a3f-4df6-8526-0e47bff1f0a8"
+  "updatedAt": "2023-01-13T15:05:22.825Z",
+  "versionId": "6bbd2b21-810f-4f0e-8f05-58aa16c7acb1"
 }
