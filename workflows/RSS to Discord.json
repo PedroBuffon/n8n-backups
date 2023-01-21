@@ -23,28 +23,6 @@
         ]
       ]
     },
-    "regexURL": {
-      "main": [
-        [
-          {
-            "node": "Filter SubsPlease",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Filter SubsPlease": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Filter Erai Raws": {
       "main": [
         [
@@ -83,17 +61,6 @@
         ]
       ]
     },
-    "SubsPlease RSS": {
-      "main": [
-        [
-          {
-            "node": "regexURL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "DKB RSS": {
       "main": [
         [
@@ -126,33 +93,6 @@
           },
           {
             "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches1": {
-      "main": [
-        [
-          {
-            "node": "Discord SubsPlease",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Postgres1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Discord SubsPlease": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches1",
             "type": "main",
             "index": 0
           }
@@ -259,44 +199,6 @@
     },
     {
       "parameters": {
-        "jsCode": "for (const item of $input.all()) {\n  var regex = item.json.link.replace(/\\W\\w*torrent/gm,'')\n  item.json.regexURL = regex;\n}\n\nreturn $input.all();"
-      },
-      "id": "8ea49df7-6c3a-4957-8123-7c2438c06a3f",
-      "name": "regexURL",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        600
-      ]
-    },
-    {
-      "parameters": {
-        "channelId": "1041723229569552484",
-        "embed": true,
-        "title": "={{ $json[\"title\"] }}",
-        "url": "={{ $json[\"link\"] }}",
-        "authorName": "SubsPlease",
-        "authorUrl": "https://subsplease.org/",
-        "timestamp": "={{ $json[\"Date\"] }}"
-      },
-      "id": "292b0a5c-8b51-4134-8dc5-d8b7663561b4",
-      "name": "Discord SubsPlease",
-      "type": "n8n-nodes-discord.discord",
-      "typeVersion": 1,
-      "position": [
-        1540,
-        600
-      ],
-      "credentials": {
-        "discordApi": {
-          "id": "3",
-          "name": "Discord n8n Bot"
-        }
-      }
-    },
-    {
-      "parameters": {
         "channelId": "1041723229569552484",
         "embed": true,
         "color": "#E66F0D",
@@ -312,7 +214,7 @@
       "typeVersion": 1,
       "position": [
         1320,
-        940
+        600
       ],
       "credentials": {
         "discordApi": {
@@ -320,38 +222,6 @@
           "name": "Discord n8n Bot"
         }
       }
-    },
-    {
-      "parameters": {
-        "keepOnlySet": true,
-        "values": {
-          "string": [
-            {
-              "name": "title",
-              "value": "={{ $json[\"title\"] }}"
-            },
-            {
-              "name": "link",
-              "value": "={{ $json[\"regexURL\"] }}"
-            },
-            {
-              "name": "Date",
-              "value": "={{ $json[\"isoDate\"] }}"
-            }
-          ]
-        },
-        "options": {
-          "dotNotation": true
-        }
-      },
-      "id": "7ab3b1e4-7782-4ba6-b636-28f81f0d831f",
-      "name": "Filter SubsPlease",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        1180,
-        600
-      ]
     },
     {
       "parameters": {
@@ -422,7 +292,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        940
+        600
       ]
     },
     {
@@ -458,28 +328,6 @@
             }
           ]
         },
-        "feedUrl": "https://subsplease.org/rss/?t&r=1080"
-      },
-      "id": "41d33b6d-9bc5-42fe-89e1-efd40f3f70c2",
-      "name": "SubsPlease RSS",
-      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
-      "typeVersion": 1,
-      "position": [
-        800,
-        600
-      ]
-    },
-    {
-      "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 5,
-              "unit": "minutes"
-            }
-          ]
-        },
         "feedUrl": "https://nyaa.si/?page=rss&u=DKB0512"
       },
       "id": "4fec1cb5-cbed-4e76-a6ce-4099f5cb0453",
@@ -488,7 +336,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        940
+        600
       ]
     },
     {
@@ -510,27 +358,13 @@
         "batchSize": 1,
         "options": {}
       },
-      "id": "8f3ffa0a-30fa-4942-b965-0005fd4cc913",
-      "name": "Split In Batches1",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        1360,
-        600
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
       "id": "fe05e804-d436-4139-ac71-37211707d9e1",
       "name": "Split In Batches2",
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 1,
       "position": [
         1160,
-        940
+        600
       ]
     },
     {
@@ -549,8 +383,8 @@
       ],
       "credentials": {
         "postgres": {
-          "id": "1",
-          "name": "Postgres torrents"
+          "id": "16",
+          "name": "Postgres BuffonAnimes"
         }
       }
     },
@@ -566,33 +400,12 @@
       "typeVersion": 1,
       "position": [
         1320,
-        780
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "1",
-          "name": "Postgres torrents"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
-        "additionalFields": {}
-      },
-      "id": "b6814b5a-7193-4824-ae1c-be66b3041b4e",
-      "name": "Postgres1",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 1,
-      "position": [
-        1540,
         440
       ],
       "credentials": {
         "postgres": {
-          "id": "1",
-          "name": "Postgres torrents"
+          "id": "16",
+          "name": "Postgres BuffonAnimes"
         }
       }
     }
@@ -1780,17 +1593,17 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-20T14:40:57Z"
+      "lastTimeChecked": "2023-01-21T03:05:28Z"
     },
     "node:SubsPlease RSS": {
-      "lastTimeChecked": "2023-01-20T14:40:28Z"
+      "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-20T14:40:54Z"
+      "lastTimeChecked": "2023-01-21T03:10:26Z"
     }
   },
   "tags": [],
-  "triggerCount": 3,
-  "updatedAt": "2023-01-20T14:40:58.673Z",
-  "versionId": "6bbd2b21-810f-4f0e-8f05-58aa16c7acb1"
+  "triggerCount": 2,
+  "updatedAt": "2023-01-21T03:10:27.393Z",
+  "versionId": "f1c80c22-ee4a-4611-8c5d-fd7a1550c06f"
 }
