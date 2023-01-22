@@ -125,6 +125,55 @@
           }
         ]
       ]
+    },
+    "Split In Batches3": {
+      "main": [
+        [
+          {
+            "node": "Discord NcRaws",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nc-Raws RSS": {
+      "main": [
+        [
+          {
+            "node": "Filter Nc-Raws",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Nc-Raws": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discord NcRaws": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-14T14:23:31.634Z",
@@ -406,6 +455,121 @@
         "postgres": {
           "id": "16",
           "name": "Postgres BuffonAnimes"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "109dbf3f-bfc2-4681-906a-b80b7d299014",
+      "name": "Split In Batches3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "additionalFields": {}
+      },
+      "id": "cf227313-ae01-4444-95a0-92be31588d6e",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        800
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "16",
+          "name": "Postgres BuffonAnimes"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://nyaa.si/?page=rss&q=CR+1920x1080&c=0_0&f=0&u=BraveSail"
+      },
+      "id": "db1d7baa-ae0f-4784-addd-18f8bb4db64a",
+      "name": "Nc-Raws RSS",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
+      "typeVersion": 1,
+      "position": [
+        800,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"title\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"guid\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"isoDate\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "8db08559-3f76-481f-b2b5-e137b38f5d04",
+      "name": "Filter Nc-Raws",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "channelId": "1041723229569552484",
+        "embed": true,
+        "color": "#36E60B",
+        "title": "={{ $json[\"title\"] }}",
+        "url": "={{ $json[\"link\"] }}",
+        "authorName": "DKB",
+        "authorUrl": "https://nc-raws.org/",
+        "timestamp": "={{ $json[\"Date\"] }}"
+      },
+      "id": "b0804f1c-c780-4eda-8c7a-2cc531c11d0d",
+      "name": "Discord NcRaws",
+      "type": "n8n-nodes-discord.discord",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        960
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "3",
+          "name": "Discord n8n Bot"
         }
       }
     }
@@ -1593,17 +1757,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-21T16:45:55Z"
+      "lastTimeChecked": "2023-01-22T05:00:37Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-21T16:50:45Z"
+      "lastTimeChecked": "2023-01-22T05:00:34Z"
+    },
+    "node:Nc-Raws RSS": {
+      "lastTimeChecked": "2023-01-22T04:55:48Z"
     }
   },
   "tags": [],
-  "triggerCount": 2,
-  "updatedAt": "2023-01-21T16:50:46.416Z",
-  "versionId": "f1c80c22-ee4a-4611-8c5d-fd7a1550c06f"
+  "triggerCount": 3,
+  "updatedAt": "2023-01-22T05:00:38.583Z",
+  "versionId": "239a63a5-d8a4-433f-b807-0c615b7a71dc"
 }
