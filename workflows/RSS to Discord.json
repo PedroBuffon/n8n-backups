@@ -491,7 +491,8 @@
           "id": "16",
           "name": "Postgres BuffonAnimes"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -1757,20 +1758,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-23T21:12:25Z"
+      "lastTimeChecked": "2023-01-24T16:10:45Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-23T21:12:27Z"
+      "lastTimeChecked": "2023-01-24T16:05:52Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-23T21:12:29Z"
+      "lastTimeChecked": "2023-01-24T16:10:30Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-23T21:12:30.473Z",
-  "versionId": "239a63a5-d8a4-433f-b807-0c615b7a71dc"
+  "updatedAt": "2023-01-24T16:10:46.645Z",
+  "versionId": "e97ee936-6f8e-48f0-8272-68f0574c7a75"
 }
