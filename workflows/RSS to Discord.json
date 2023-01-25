@@ -555,7 +555,7 @@
     },
     {
       "parameters": {
-        "jsCode": "for (const item of $input.all()) {\n  var regex = item.json.Title.replace(/\\[Torrent\\]|\\W1080p.*$/gm,'')\n  item.json.regexURL = regex;\n}\n\nreturn $input.all();"
+        "jsCode": "for (const item of $input.all()) {\n  var regex = item.json.Title.replace(/\\[Magnet\\]|\\W1080p.*$/gm,'')\n  item.json.regexURL = regex;\n}\n\nreturn $input.all();"
       },
       "id": "534e8354-ca5e-4e73-a52e-fa6bf276b389",
       "name": "regexURL erai",
@@ -608,16 +608,16 @@
         "values": {
           "string": [
             {
-              "name": "title",
-              "value": "={{ $json[\"Title\"] }}"
-            },
-            {
               "name": "link",
               "value": "={{ $json[\"URL\"] }}"
             },
             {
               "name": "Date",
               "value": "={{ $json[\"Date\"] }}"
+            },
+            {
+              "name": "regexURL",
+              "value": "={{ $json[\"regexURL\"] }}"
             }
           ]
         },
@@ -1850,20 +1850,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-24T23:39:44Z"
+      "lastTimeChecked": "2023-01-25T16:40:10Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-24T23:39:46Z"
+      "lastTimeChecked": "2023-01-25T16:35:18Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-24T23:39:47Z"
+      "lastTimeChecked": "2023-01-25T16:40:03Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-24T23:39:49.218Z",
-  "versionId": "93ee7089-5ff6-44e7-a01f-937999e9b1b1"
+  "updatedAt": "2023-01-25T16:40:11.760Z",
+  "versionId": "e2578ac9-e8f3-41d0-b451-22ce9d23c925"
 }
