@@ -92,7 +92,7 @@
             "index": 0
           },
           {
-            "node": "Postgres",
+            "node": "regexURL erai",
             "type": "main",
             "index": 0
           }
@@ -108,7 +108,7 @@
             "index": 0
           },
           {
-            "node": "Postgres2",
+            "node": "regexURL DKB",
             "type": "main",
             "index": 0
           }
@@ -131,11 +131,6 @@
         [
           {
             "node": "Discord NcRaws",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Postgres3",
             "type": "main",
             "index": 0
           }
@@ -169,6 +164,50 @@
         [
           {
             "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "regexURL erai": {
+      "main": [
+        [
+          {
+            "node": "Filter Erai2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "regexURL DKB": {
+      "main": [
+        [
+          {
+            "node": "Filter Global",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Erai2": {
+      "main": [
+        [
+          {
+            "node": "Filter Global",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Global": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
             "type": "main",
             "index": 0
           }
@@ -296,6 +335,10 @@
             {
               "name": "content",
               "value": "={{ $json[\"content\"] }}"
+            },
+            {
+              "name": "magnet",
+              "value": "={{ $json[\"link\"] }}"
             }
           ]
         },
@@ -355,7 +398,7 @@
             }
           ]
         },
-        "feedUrl": "https://www.erai-raws.info/feed/?res=1080p&type=torrent&0879fd62733b8db8535eb1be24e23f6d"
+        "feedUrl": "https://www.erai-raws.info/feed/?res=1080p&type=magnet&0879fd62733b8db8535eb1be24e23f6d"
       },
       "id": "2d09201c-82cf-4b4c-b1ea-b2dcf8195ca3",
       "name": "Erai Raws RSS",
@@ -418,48 +461,6 @@
     },
     {
       "parameters": {
-        "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
-        "additionalFields": {}
-      },
-      "id": "d4e704c2-958b-40ac-8a34-3d5c419cec7d",
-      "name": "Postgres",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 1,
-      "position": [
-        1720,
-        100
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "16",
-          "name": "Postgres BuffonAnimes"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
-        "additionalFields": {}
-      },
-      "id": "64244757-2e17-45ed-a5e6-afb352cde949",
-      "name": "Postgres2",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 1,
-      "position": [
-        1320,
-        440
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "16",
-          "name": "Postgres BuffonAnimes"
-        }
-      }
-    },
-    {
-      "parameters": {
         "batchSize": 1,
         "options": {}
       },
@@ -469,30 +470,8 @@
       "typeVersion": 1,
       "position": [
         1160,
-        960
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
-        "additionalFields": {}
-      },
-      "id": "cf227313-ae01-4444-95a0-92be31588d6e",
-      "name": "Postgres3",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 1,
-      "position": [
-        1320,
         800
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "16",
-          "name": "Postgres BuffonAnimes"
-        }
-      },
-      "disabled": true
+      ]
     },
     {
       "parameters": {
@@ -513,7 +492,7 @@
       "typeVersion": 1,
       "position": [
         800,
-        960
+        800
       ]
     },
     {
@@ -545,7 +524,7 @@
       "typeVersion": 1,
       "position": [
         1000,
-        960
+        800
       ]
     },
     {
@@ -565,7 +544,7 @@
       "typeVersion": 1,
       "position": [
         1320,
-        960
+        800
       ],
       "credentials": {
         "discordApi": {
@@ -573,6 +552,119 @@
           "name": "Discord n8n Bot"
         }
       }
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  var regex = item.json.Title.replace(/\\[Torrent\\]|\\W1080p.*$/gm,'')\n  item.json.regexURL = regex;\n}\n\nreturn $input.all();"
+      },
+      "id": "534e8354-ca5e-4e73-a52e-fa6bf276b389",
+      "name": "regexURL erai",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  var regex = item.json.title.replace(/\\[DKB\\]|\\W1080p.*$/gm,'')\n  item.json.regexURL = regex;\n}\n\nreturn $input.all();"
+      },
+      "id": "badaf85c-6c7f-4c69-a200-2c2cf51ccfb4",
+      "name": "regexURL DKB",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"regexURL\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "additionalFields": {
+          "mode": "independently"
+        }
+      },
+      "id": "64244757-2e17-45ed-a5e6-afb352cde949",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        420
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "16",
+          "name": "Postgres BuffonAnimes"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"Title\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"URL\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"Date\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "b805ed29-0575-4c96-961f-2ac717827f22",
+      "name": "Filter Erai2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"regexURL\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"Date\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "a7a72bf0-509d-4b88-90fb-edc4fbe3feee",
+      "name": "Filter Global",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        420
+      ]
     }
   ],
   "pinData": {},
@@ -1758,20 +1850,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-24T16:10:45Z"
+      "lastTimeChecked": "2023-01-24T23:39:44Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-24T16:05:52Z"
+      "lastTimeChecked": "2023-01-24T23:39:46Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-24T16:10:30Z"
+      "lastTimeChecked": "2023-01-24T23:39:47Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-24T16:10:46.645Z",
-  "versionId": "e97ee936-6f8e-48f0-8272-68f0574c7a75"
+  "updatedAt": "2023-01-24T23:39:49.218Z",
+  "versionId": "93ee7089-5ff6-44e7-a01f-937999e9b1b1"
 }
