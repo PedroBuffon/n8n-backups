@@ -103,11 +103,6 @@
       "main": [
         [
           {
-            "node": "Discord DKB",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "regexURL DKB",
             "type": "main",
             "index": 0
@@ -185,7 +180,12 @@
       "main": [
         [
           {
-            "node": "Filter Global",
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
             "type": "main",
             "index": 0
           }
@@ -221,6 +221,50 @@
             "node": "Postgres1",
             "type": "main",
             "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML Extract1": {
+      "main": [
+        [
+          {
+            "node": "Filter Erai Raws1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Filter Global",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Erai Raws1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -603,7 +647,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        1760,
+        2440,
         440
       ],
       "credentials": {
@@ -656,7 +700,7 @@
             },
             {
               "name": "link",
-              "value": "={{ $json[\"link\"] }}"
+              "value": "={{ $json[\"magnet\"] }}"
             },
             {
               "name": "Date",
@@ -679,17 +723,15 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1540,
+        2260,
         440
       ]
     },
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate, hevc) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ' {{ $json[\"hevc\"] }})",
-        "additionalFields": {
-          "mode": "independently"
-        }
+        "query": "=INSERT INTO releases (nome,link,pubdate,hevc) VALUES ('{{ $json[\"title\"] }}','{{ $json[\"link\"] }}', '{{ $json[\"Date\"] }}', {{ $json[\"hevc\"] }});",
+        "additionalFields": {}
       },
       "id": "df215472-8c07-459b-890a-debd184155c6",
       "name": "Postgres1",
@@ -722,11 +764,10 @@
             {
               "name": "Date",
               "value": "={{ $json[\"Date\"] }}"
-            }
-          ],
-          "boolean": [
+            },
             {
-              "name": "hevc"
+              "name": "hevc",
+              "value": "false"
             }
           ]
         },
@@ -742,6 +783,83 @@
         2080,
         280
       ]
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "magnet",
+              "cssSelector": "a",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "749c8264-0014-4d34-90e2-7fc76ddb4bee",
+      "name": "HTML Extract1",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json[\"link\"] }}",
+        "options": {}
+      },
+      "id": "ff3ec364-cd08-40a3-866f-c99dabd89d2e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1500,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "11e32757-14c3-426b-8b9f-a238e776a308",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        2040,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "magnet",
+              "value": "={{ $json[\"magnet\"][17] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "name": "Filter Erai Raws1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1840,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "ea8ed020-efa2-4d2f-ae98-bc5ca9ddea3b"
     }
   ],
   "pinData": {},
@@ -1927,20 +2045,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-26T02:35:03Z"
+      "lastTimeChecked": "2023-01-26T16:35:38Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-26T02:30:55Z"
+      "lastTimeChecked": "2023-01-26T16:30:54Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-26T02:30:07Z"
+      "lastTimeChecked": "2023-01-26T16:35:49Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-26T02:35:04.698Z",
-  "versionId": "df032676-180f-405b-82e0-f287bb6260c6"
+  "updatedAt": "2023-01-26T16:35:50.547Z",
+  "versionId": "7f85ccda-3a03-4c1c-8715-11c25a439160"
 }
