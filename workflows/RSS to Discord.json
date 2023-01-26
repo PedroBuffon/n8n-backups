@@ -196,7 +196,7 @@
       "main": [
         [
           {
-            "node": "Filter Global",
+            "node": "Filter Global1",
             "type": "main",
             "index": 0
           }
@@ -208,6 +208,17 @@
         [
           {
             "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Global1": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
             "type": "main",
             "index": 0
           }
@@ -582,7 +593,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "=insert into public.releases (nome,link,pubdate) values (' {{ $json[\"regexURL\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ')",
+        "query": "=insert into public.releases (nome,link,pubdate,hevc) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ', {{ $json[\"hevc\"] }})",
         "additionalFields": {
           "mode": "independently"
         }
@@ -592,8 +603,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        2460,
-        420
+        1760,
+        440
       ],
       "credentials": {
         "postgres": {
@@ -651,6 +662,12 @@
               "name": "Date",
               "value": "={{ $json[\"Date\"] }}"
             }
+          ],
+          "boolean": [
+            {
+              "name": "hevc",
+              "value": true
+            }
           ]
         },
         "options": {
@@ -662,8 +679,68 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        2240,
-        420
+        1540,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=insert into public.releases (nome,link,pubdate, hevc) values (' {{ $json[\"title\"] }} ', ' {{ $json[\"link\"] }} ', ' {{ $json[\"Date\"] }} ' {{ $json[\"hevc\"] }})",
+        "additionalFields": {
+          "mode": "independently"
+        }
+      },
+      "id": "df215472-8c07-459b-890a-debd184155c6",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        280
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "16",
+          "name": "Postgres BuffonAnimes"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"regexURL\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"Date\"] }}"
+            }
+          ],
+          "boolean": [
+            {
+              "name": "hevc"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "a07ec23a-2bfb-4cfe-9970-b24e650db31e",
+      "name": "Filter Global1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        280
       ]
     }
   ],
@@ -1850,20 +1927,20 @@
       ]
     },
     "node:Erai Raws RSS": {
-      "lastTimeChecked": "2023-01-25T16:40:10Z"
+      "lastTimeChecked": "2023-01-26T02:35:03Z"
     },
     "node:SubsPlease RSS": {
       "lastTimeChecked": "2023-01-20T19:35:07Z"
     },
     "node:DKB RSS": {
-      "lastTimeChecked": "2023-01-25T16:35:18Z"
+      "lastTimeChecked": "2023-01-26T02:30:55Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-25T16:40:03Z"
+      "lastTimeChecked": "2023-01-26T02:30:07Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-25T16:40:11.760Z",
-  "versionId": "e2578ac9-e8f3-41d0-b451-22ce9d23c925"
+  "updatedAt": "2023-01-26T02:35:04.698Z",
+  "versionId": "df032676-180f-405b-82e0-f287bb6260c6"
 }
