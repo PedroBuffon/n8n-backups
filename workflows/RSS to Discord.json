@@ -923,6 +923,9 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "2023-01-29T19:24:30.000Z",
+        "2023-01-29T17:50:00.000Z",
+        "2023-01-29T16:57:43.000Z",
         "2023-01-29T15:52:29.000Z",
         "2023-01-28T23:15:07.000Z",
         "2023-01-28T22:23:55.000Z",
@@ -2364,7 +2367,7 @@
       "lastTimeChecked": "2023-01-28T16:40:02Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-29T16:40:12Z"
+      "lastTimeChecked": "2023-01-29T17:40:12Z"
     },
     "node:Schedule Trigger": {
       "recurrencyRules": []
@@ -2373,11 +2376,11 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-01-29T16:40:48Z"
+      "lastTimeChecked": "2023-01-29T17:40:48Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-29T16:56:21.397Z",
+  "updatedAt": "2023-01-30T04:56:21.513Z",
   "versionId": "bb52495f-97fb-45e0-9cdd-b529a50b6eca"
 }
