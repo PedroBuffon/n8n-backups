@@ -2367,7 +2367,7 @@
       "lastTimeChecked": "2023-01-28T16:40:02Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-29T17:40:12Z"
+      "lastTimeChecked": "2023-01-30T16:35:58Z"
     },
     "node:Schedule Trigger": {
       "recurrencyRules": []
@@ -2376,11 +2376,11 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-01-29T17:40:48Z"
+      "lastTimeChecked": "2023-01-30T16:40:57Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-30T04:56:21.513Z",
+  "updatedAt": "2023-01-30T17:00:20.992Z",
   "versionId": "bb52495f-97fb-45e0-9cdd-b529a50b6eca"
 }
