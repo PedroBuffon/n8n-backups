@@ -383,6 +383,7 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Sun, 29 Jan 2023 11:41:00 -0500",
         "Sun, 29 Jan 2023 10:59:20 -0500",
         "Sun, 29 Jan 2023 10:29:11 -0500",
         "Sun, 29 Jan 2023 10:02:00 -0500",
@@ -1140,6 +1141,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-01-29T16:55:24.646Z",
+  "updatedAt": "2023-01-30T04:55:22.669Z",
   "versionId": "e0a160f2-7e89-4969-93cf-d0b7110b43e8"
 }
