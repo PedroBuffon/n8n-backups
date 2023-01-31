@@ -295,6 +295,17 @@
           }
         ]
       ]
+    },
+    "DKB": {
+      "main": [
+        [
+          {
+            "node": "Filter DKB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-14T14:23:31.634Z",
@@ -827,7 +838,8 @@
       "position": [
         660,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -846,7 +858,8 @@
       "position": [
         440,
         600
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -891,7 +904,8 @@
         600
       ],
       "typeVersion": 1,
-      "id": "489d9788-1a0e-4528-91e1-49b3263527dc"
+      "id": "489d9788-1a0e-4528-91e1-49b3263527dc",
+      "disabled": true
     },
     {
       "parameters": {
@@ -913,6 +927,53 @@
       "position": [
         820,
         280
+      ]
+    },
+    {
+      "parameters": {
+        "channelIds": [
+          "1041723229569552484"
+        ],
+        "value": "@Weekly Onii-Chan I have something for you! :P",
+        "caseSensitive": true
+      },
+      "id": "6a12b002-07b9-4fb4-9abc-6eb59a4892b3",
+      "name": "Discord Trigger",
+      "type": "n8n-nodes-discord.discordTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        420
+      ],
+      "webhookId": "7afbb5e0-eb62-4b33-a0c0-d311721586d8",
+      "credentials": {
+        "discordApi": {
+          "id": "3",
+          "name": "Discord n8n Bot"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 5,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "feedUrl": "https://nyaa.si/?page=rss&u=DKB0512"
+      },
+      "id": "578d884f-4d56-4dc3-9fc0-ca2118b78598",
+      "name": "DKB",
+      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        420
       ]
     }
   ],
@@ -2374,7 +2435,7 @@
       "lastTimeChecked": "2023-01-28T16:40:02Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-31T04:45:09Z"
+      "lastTimeChecked": "2023-01-31T16:05:15Z"
     },
     "node:Schedule Trigger": {
       "recurrencyRules": []
@@ -2383,11 +2444,14 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-01-31T04:45:50Z"
+      "lastTimeChecked": "2023-01-31T16:10:12Z"
+    },
+    "node:DKB": {
+      "lastTimeChecked": "2023-01-31T16:10:08Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-31T04:58:09.538Z",
-  "versionId": "345cdf4c-ed10-45f9-abcd-cf604e83807d"
+  "updatedAt": "2023-01-31T16:10:13.681Z",
+  "versionId": "e8434121-da6a-45b7-b124-1f5fcd5d9ae2"
 }
