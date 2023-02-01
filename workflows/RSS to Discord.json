@@ -16,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Split In Batches",
+            "node": "regexURL erai",
             "type": "main",
             "index": 0
           }
@@ -55,11 +55,6 @@
         [
           {
             "node": "Discord Erai Raws",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "regexURL erai",
             "type": "main",
             "index": 0
           }
@@ -193,6 +188,11 @@
             "node": "Postgres1",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -241,44 +241,11 @@
         ]
       ]
     },
-    "RSS Read": {
-      "main": [
-        [
-          {
-            "node": "Only get new RSS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Schedule Trigger": {
-      "main": [
-        [
-          {
-            "node": "RSS Read",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Filter DKB": {
       "main": [
         [
           {
             "node": "regexURL DKB",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Only get new RSS": {
-      "main": [
-        [
-          {
-            "node": "Filter DKB",
             "type": "main",
             "index": 0
           }
@@ -356,11 +323,11 @@
         "channelId": "1041723229569552484",
         "embed": true,
         "color": "#D31A1A",
-        "title": "={{ $json[\"Title\"] }}",
-        "url": "={{ $json[\"link\"] }}",
+        "title": "={{ $json[\"title\"] }}",
+        "url": "={{ $json[\"link2\"] }}",
         "authorName": "Erai-Raws",
         "authorUrl": "https://www.erai-raws.info/",
-        "description": "={{ $json[\"contentSnippet\"] }}",
+        "description": "=",
         "timestamp": "={{ $json[\"Date\"] }}"
       },
       "id": "fc7b0084-86c3-4073-a0cb-b6caa2841371",
@@ -368,8 +335,8 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        1720,
-        260
+        2420,
+        200
       ],
       "credentials": {
         "discordApi": {
@@ -458,8 +425,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 1,
       "position": [
-        1560,
-        260
+        2260,
+        200
       ]
     },
     {
@@ -579,7 +546,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1740,
+        1600,
         100
       ]
     },
@@ -635,6 +602,10 @@
             {
               "name": "regexURL",
               "value": "={{ $json[\"regexURL\"] }}"
+            },
+            {
+              "name": "link2",
+              "value": "={{ $json[\"link\"] }}"
             }
           ]
         },
@@ -647,8 +618,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        2040,
-        280
+        1900,
+        100
       ]
     },
     {
@@ -704,8 +675,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        2420,
-        280
+        2260,
+        -20
       ],
       "credentials": {
         "postgres": {
@@ -734,6 +705,10 @@
             {
               "name": "hevc",
               "value": "false"
+            },
+            {
+              "name": "link2",
+              "value": "={{ $json[\"link2\"] }}"
             }
           ]
         },
@@ -746,8 +721,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        2240,
-        280
+        2080,
+        100
       ]
     },
     {
@@ -829,40 +804,6 @@
     },
     {
       "parameters": {
-        "url": "https://nyaa.si/?page=rss&u=DKB0512"
-      },
-      "id": "82d068ed-c1a7-4dd9-8ef0-93825aeb2268",
-      "name": "RSS Read",
-      "type": "n8n-nodes-base.rssFeedRead",
-      "typeVersion": 1,
-      "position": [
-        660,
-        600
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "field": "minutes"
-            }
-          ]
-        }
-      },
-      "id": "93339413-be1e-4b5d-86b9-68b765e5a858",
-      "name": "Schedule Trigger",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1,
-      "position": [
-        440,
-        600
-      ],
-      "disabled": true
-    },
-    {
-      "parameters": {
         "keepOnlySet": true,
         "values": {
           "string": [
@@ -895,20 +836,6 @@
     },
     {
       "parameters": {
-        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"isoDate\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['isoDate']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
-      },
-      "name": "Only get new RSS",
-      "type": "n8n-nodes-base.function",
-      "position": [
-        840,
-        600
-      ],
-      "typeVersion": 1,
-      "id": "489d9788-1a0e-4528-91e1-49b3263527dc",
-      "disabled": true
-    },
-    {
-      "parameters": {
         "pollTimes": {
           "item": [
             {
@@ -931,31 +858,6 @@
     },
     {
       "parameters": {
-        "channelIds": [
-          "1041723229569552484"
-        ],
-        "value": "@Weekly Onii-Chan I have something for you! :P",
-        "caseSensitive": true
-      },
-      "id": "6a12b002-07b9-4fb4-9abc-6eb59a4892b3",
-      "name": "Discord Trigger",
-      "type": "n8n-nodes-discord.discordTrigger",
-      "typeVersion": 1,
-      "position": [
-        440,
-        420
-      ],
-      "webhookId": "7afbb5e0-eb62-4b33-a0c0-d311721586d8",
-      "credentials": {
-        "discordApi": {
-          "id": "3",
-          "name": "Discord n8n Bot"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
         "pollTimes": {
           "item": [
             {
@@ -972,8 +874,8 @@
       "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
       "position": [
-        660,
-        420
+        800,
+        600
       ]
     }
   ],
@@ -2435,7 +2337,7 @@
       "lastTimeChecked": "2023-01-28T16:40:02Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-01-31T16:05:15Z"
+      "lastTimeChecked": "2023-01-31T19:11:09Z"
     },
     "node:Schedule Trigger": {
       "recurrencyRules": []
@@ -2444,14 +2346,14 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-01-31T16:10:12Z"
+      "lastTimeChecked": "2023-01-31T19:11:10Z"
     },
     "node:DKB": {
-      "lastTimeChecked": "2023-01-31T16:10:08Z"
+      "lastTimeChecked": "2023-01-31T19:11:12Z"
     }
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-01-31T16:10:13.681Z",
-  "versionId": "e8434121-da6a-45b7-b124-1f5fcd5d9ae2"
+  "updatedAt": "2023-01-31T19:11:13.609Z",
+  "versionId": "d3f98443-8bed-4a45-9b17-d00c673a6432"
 }
