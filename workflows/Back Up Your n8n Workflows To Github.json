@@ -384,8 +384,8 @@
         "triggerTimes": {
           "item": [
             {
-              "mode": "everyX",
-              "value": 12
+              "mode": "custom",
+              "cronExpression": "0 0 * * *"
             }
           ]
         }
@@ -520,6 +520,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-02-16T23:49:19.889Z",
-  "versionId": "2c4c4fc9-4ec2-4ad5-94bb-8885ba6c9410"
+  "updatedAt": "2023-02-16T23:51:21.816Z",
+  "versionId": "4e62709b-11ec-4bab-86e6-947b29cb14bb"
 }
