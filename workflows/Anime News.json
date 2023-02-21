@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Split In Batches",
+            "node": "Discord Anime News",
             "type": "main",
             "index": 0
           }
@@ -94,42 +94,9 @@
         ]
       ]
     },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Discord Anime News",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Discord Anime News": {
       "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "RSS Feed Trigger": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Filter Anime News",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -212,7 +179,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        1760,
+        1740,
         300
       ],
       "retryOnFail": false
@@ -236,7 +203,7 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        2180,
+        1920,
         300
       ],
       "credentials": {
@@ -335,43 +302,6 @@
         500,
         240
       ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "90457b9d-7ca6-4a7d-950c-0085f71f95f2",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        1980,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 10,
-              "unit": "minutes"
-            }
-          ]
-        },
-        "feedUrl": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us"
-      },
-      "id": "e5e7a4ed-add4-481f-92b4-82d4c94bce9a",
-      "name": "RSS Feed Trigger",
-      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
-      "typeVersion": 1,
-      "position": [
-        860,
-        80
-      ],
-      "disabled": true
     }
   ],
   "pinData": {},
@@ -383,6 +313,25 @@
   "staticData": {
     "global": {
       "oldRSSIds": [
+        "Mon, 20 Feb 2023 21:11:26 -0500",
+        "Mon, 20 Feb 2023 20:28:01 -0500",
+        "Mon, 20 Feb 2023 19:35:33 -0500",
+        "Mon, 20 Feb 2023 17:15:00 -0500",
+        "Mon, 20 Feb 2023 15:15:00 -0500",
+        "Mon, 20 Feb 2023 13:15:00 -0500",
+        "Mon, 20 Feb 2023 11:15:00 -0500",
+        "Mon, 20 Feb 2023 09:15:00 -0500",
+        "Mon, 20 Feb 2023 08:15:00 -0500",
+        "Mon, 20 Feb 2023 06:56:08 -0500",
+        "Mon, 20 Feb 2023 06:21:44 -0500",
+        "Mon, 20 Feb 2023 05:00:00 -0500",
+        "Mon, 20 Feb 2023 04:48:27 -0500",
+        "Mon, 20 Feb 2023 04:07:43 -0500",
+        "Mon, 20 Feb 2023 04:00:00 -0500",
+        "Mon, 20 Feb 2023 03:23:20 -0500",
+        "Mon, 20 Feb 2023 01:15:46 -0500",
+        "Mon, 20 Feb 2023 00:58:45 -0500",
+        "Mon, 20 Feb 2023 00:45:41 -0500",
         "Sun, 19 Feb 2023 21:49:54 -0500",
         "Sun, 19 Feb 2023 21:37:13 -0500",
         "Sun, 19 Feb 2023 10:02:00 -0500",
@@ -1479,6 +1428,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-02-20T04:51:27.824Z",
-  "versionId": "e0a160f2-7e89-4969-93cf-d0b7110b43e8"
+  "updatedAt": "2023-02-21T04:41:10.493Z",
+  "versionId": "8fa49a9b-dfb6-4835-a467-083eddafb806"
 }
