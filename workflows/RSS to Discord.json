@@ -41,90 +41,12 @@
     },
     "Discord Erai Raws": {
       "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Discord Erai Raws",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches2": {
-      "main": [
-        [
-          {
-            "node": "Discord DKB",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Discord DKB": {
       "main": [
-        [
-          {
-            "node": "Split In Batches2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches3": {
-      "main": [
-        [
-          {
-            "node": "Discord NcRaws",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Nc-Raws RSS": {
-      "main": [
-        [
-          {
-            "node": "Filter Nc-Raws",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Filter Nc-Raws": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Discord NcRaws": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches3",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "regexURL erai": {
@@ -174,7 +96,7 @@
             "index": 0
           },
           {
-            "node": "Split In Batches2",
+            "node": "Discord DKB",
             "type": "main",
             "index": 0
           }
@@ -190,7 +112,7 @@
             "index": 0
           },
           {
-            "node": "Split In Batches",
+            "node": "Discord Erai Raws",
             "type": "main",
             "index": 0
           }
@@ -335,8 +257,8 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        2420,
-        200
+        2220,
+        340
       ],
       "credentials": {
         "discordApi": {
@@ -361,8 +283,8 @@
       "type": "n8n-nodes-discord.discord",
       "typeVersion": 1,
       "position": [
-        2480,
-        680
+        2460,
+        720
       ],
       "credentials": {
         "discordApi": {
@@ -417,128 +339,6 @@
     },
     {
       "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "bdd5692b-95fe-4493-977c-7a06695a8f43",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        2260,
-        200
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "fe05e804-d436-4139-ac71-37211707d9e1",
-      "name": "Split In Batches2",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        2260,
-        680
-      ]
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "109dbf3f-bfc2-4681-906a-b80b7d299014",
-      "name": "Split In Batches3",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 1,
-      "position": [
-        1160,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 5,
-              "unit": "minutes"
-            }
-          ]
-        },
-        "feedUrl": "https://nyaa.si/?page=rss&q=CR+1920x1080&c=0_0&f=0&u=BraveSail"
-      },
-      "id": "db1d7baa-ae0f-4784-addd-18f8bb4db64a",
-      "name": "Nc-Raws RSS",
-      "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
-      "typeVersion": 1,
-      "position": [
-        800,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "keepOnlySet": true,
-        "values": {
-          "string": [
-            {
-              "name": "title",
-              "value": "={{ $json[\"title\"] }}"
-            },
-            {
-              "name": "link",
-              "value": "={{ $json[\"guid\"] }}"
-            },
-            {
-              "name": "Date",
-              "value": "={{ $json[\"isoDate\"] }}"
-            }
-          ]
-        },
-        "options": {
-          "dotNotation": true
-        }
-      },
-      "id": "8db08559-3f76-481f-b2b5-e137b38f5d04",
-      "name": "Filter Nc-Raws",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "channelId": "1041723229569552484",
-        "embed": true,
-        "color": "#36E60B",
-        "title": "={{ $json[\"title\"] }}",
-        "url": "={{ $json[\"link\"] }}",
-        "authorName": "Nc-Raws",
-        "authorUrl": "https://nc-raws.org/",
-        "timestamp": "={{ $json[\"Date\"] }}"
-      },
-      "id": "b0804f1c-c780-4eda-8c7a-2cc531c11d0d",
-      "name": "Discord NcRaws",
-      "type": "n8n-nodes-discord.discord",
-      "typeVersion": 1,
-      "position": [
-        1320,
-        800
-      ],
-      "credentials": {
-        "discordApi": {
-          "id": "3",
-          "name": "Discord n8n Bot"
-        }
-      }
-    },
-    {
-      "parameters": {
         "jsCode": "for (const item of $input.all()) {\n  var text = item.json.Title;\n  var regex = /\\[Magnet\\]|\\W1080p.*$/gm;\n  item.json.regexURL = text.replace(regex, '').trim();\n}\nreturn $input.all();"
       },
       "id": "534e8354-ca5e-4e73-a52e-fa6bf276b389",
@@ -547,7 +347,7 @@
       "typeVersion": 1,
       "position": [
         1600,
-        100
+        260
       ]
     },
     {
@@ -559,8 +359,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        1220,
-        460
+        1240,
+        540
       ]
     },
     {
@@ -576,8 +376,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        2440,
-        460
+        2460,
+        540
       ],
       "credentials": {
         "postgres": {
@@ -618,8 +418,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1900,
-        100
+        1800,
+        260
       ]
     },
     {
@@ -660,8 +460,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        2260,
-        460
+        2280,
+        540
       ]
     },
     {
@@ -675,8 +475,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 1,
       "position": [
-        2260,
-        -20
+        2220,
+        180
       ],
       "credentials": {
         "postgres": {
@@ -721,8 +521,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        2080,
-        100
+        2000,
+        260
       ]
     },
     {
@@ -745,8 +545,8 @@
       "type": "n8n-nodes-base.htmlExtract",
       "typeVersion": 1,
       "position": [
-        1580,
-        560
+        1600,
+        640
       ]
     },
     {
@@ -759,8 +559,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1400,
-        560
+        1420,
+        640
       ]
     },
     {
@@ -774,8 +574,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2,
       "position": [
-        2040,
-        460
+        2060,
+        540
       ]
     },
     {
@@ -796,8 +596,8 @@
       "name": "Filter Erai Raws1",
       "type": "n8n-nodes-base.set",
       "position": [
-        1760,
-        560
+        1780,
+        640
       ],
       "typeVersion": 1,
       "id": "ea8ed020-efa2-4d2f-ae98-bc5ca9ddea3b"
@@ -830,8 +630,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1000,
-        600
+        1020,
+        680
       ]
     },
     {
@@ -874,8 +674,8 @@
       "type": "n8n-nodes-rss-feed-trigger.rssFeedTrigger",
       "typeVersion": 1,
       "position": [
-        800,
-        600
+        820,
+        680
       ]
     }
   ],
@@ -2337,7 +2137,7 @@
       "lastTimeChecked": "2023-01-28T16:40:02Z"
     },
     "node:Nc-Raws RSS": {
-      "lastTimeChecked": "2023-02-20T02:30:33Z"
+      "lastTimeChecked": "2023-02-20T17:00:03Z"
     },
     "node:Schedule Trigger": {
       "recurrencyRules": []
@@ -2346,14 +2146,14 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-02-20T02:35:08Z"
+      "lastTimeChecked": "2023-02-21T00:00:42Z"
     },
     "node:DKB": {
-      "lastTimeChecked": "2023-02-20T02:35:05Z"
+      "lastTimeChecked": "2023-02-21T00:00:17Z"
     }
   },
   "tags": [],
-  "triggerCount": 3,
-  "updatedAt": "2023-02-20T02:35:09.635Z",
-  "versionId": "d3f98443-8bed-4a45-9b17-d00c673a6432"
+  "triggerCount": 2,
+  "updatedAt": "2023-02-21T00:00:43.955Z",
+  "versionId": "cf6b2715-6330-45f2-a146-77b96794be40"
 }
