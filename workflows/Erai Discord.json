@@ -1803,7 +1803,7 @@
       "recurrencyRules": []
     },
     "node:Erai -Raws": {
-      "lastTimeChecked": "2023-02-26T19:20:47Z"
+      "lastTimeChecked": "2023-02-27T19:30:04Z"
     },
     "node:DKB": {
       "lastTimeChecked": "2023-02-25T14:05:48Z"
@@ -1811,6 +1811,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-02-26T19:20:49.085Z",
+  "updatedAt": "2023-02-27T19:30:05.559Z",
   "versionId": "b7335bb2-ce60-4bc4-80b4-305d65025975"
 }
