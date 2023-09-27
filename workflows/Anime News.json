@@ -1,0 +1,304 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML Extract": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Discord Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Anime News": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Only get new RSS": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter Anime News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Only get new RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-09-27T10:36:04.794Z",
+  "id": "DGsIIzuohijrgdYR",
+  "name": "Anime News",
+  "nodes": [
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "imgURL",
+              "value": "={{  $json[\"imgURL\"][5]  }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e7883a48-5f7b-4e31-b91b-dc3235666829",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json[\"guid\"] }}",
+        "responseFormat": "string",
+        "jsonParameters": true,
+        "options": {
+          "batchInterval": 1000
+        }
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        640,
+        280
+      ],
+      "typeVersion": 1,
+      "id": "75b1314e-dcf4-4db7-a324-70e33285f833"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "imgURL",
+              "cssSelector": "link",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "HTML Extract",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        840,
+        280
+      ],
+      "typeVersion": 1,
+      "id": "6bbc765b-1179-40df-bccc-8d916ac1578a"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "0899927c-9323-4178-8a37-feb4e4050509",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        440
+      ],
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"title\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"isoDate\"] }}"
+            },
+            {
+              "name": "contentSnippet",
+              "value": "={{ $json[\"contentSnippet\"] }}"
+            },
+            {
+              "name": "guid",
+              "value": "={{ $json[\"guid\"] }}"
+            },
+            {
+              "name": "categories",
+              "value": "={{ $json[\"categories\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "c717589d-8976-41b5-a4ce-24ca11aec2b1",
+      "name": "Filter Anime News",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        640,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"pubDate\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['pubDate']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
+      },
+      "name": "Only get new RSS",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        320,
+        380
+      ],
+      "typeVersion": 1,
+      "id": "5343b95f-f70d-4a91-93f2-88cc642cac30"
+    },
+    {
+      "parameters": {
+        "url": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us",
+        "options": {}
+      },
+      "id": "610ba287-4959-4ce6-a7b6-0f835a6c149e",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        140,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "id": "162130b5-0ba0-4672-9c21-6cb64e6b8fe9",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/1134551853963681872/4xGEKyAeeL9kli3wL6gl-3qgzQVtTv3exvkTR8lvWb1oZf9NwBBTTHtFW_XE_v3oqLCi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"contentSnippet\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Anime News Network | Category: {{ $json[\"categories\"][0]}}\",\n        \"url\": \"https://www.animenewsnetwork.com/\",\n        \"icon_url\": \"https://www.animenewsnetwork.com/favicon.ico\"\n      },\n      \"title\": \"{{ $json[\"title\"] }}\",\n      \"url\": \"{{ $json[\"link\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      },\n      \"timestamp\": \"{{ $json[\"Date\"] }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "af9348b3-1437-4782-82bd-df8d6273b3ab",
+      "name": "Discord Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1400,
+        440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "aSBBM637H6nv57t8"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-09-27T10:59:06.900Z",
+  "versionId": "65179caa-7c0c-430e-95f7-670faf32271c"
+}
