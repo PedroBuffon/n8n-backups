@@ -1,0 +1,59 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Discord Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-09-27T10:36:55.687Z",
+  "id": "aSBBM637H6nv57t8",
+  "name": "Error workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5f44811f-e46d-49db-b283-7ef2d0d16cf9",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/1134662352969683036/6TEEKh2hwKT8Enuupn_H_nlKxe5keMk6AeG3uoUoAfSwgbpGipHwNelSk7Pxl_vmHwmy",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"execution\"][\"error\"][\"message\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"N8N Error Log\",\n        \"url\": \"http://177.66.30.74:5678/\"\n      },\n      \"title\": \"{{ $json[\"workflow\"][\"name\"] }}\",\n      \"url\": \"{{ $json[\"execution\"][\"url\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "9cc7434c-0660-47b2-b840-4da1d0c0441c",
+      "name": "Discord Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        600,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-09-27T11:08:45.345Z",
+  "versionId": "9506cf89-ecdb-4d36-bd95-fe59aa3fb250"
+}
