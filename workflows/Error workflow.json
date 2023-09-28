@@ -49,11 +49,14 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-09-27T11:08:45.345Z",
-  "versionId": "9506cf89-ecdb-4d36-bd95-fe59aa3fb250"
+  "updatedAt": "2023-09-27T12:04:39.787Z",
+  "versionId": "88280653-7c1e-4da7-977e-8c6b649cd81e"
 }
