@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -72,6 +72,11 @@
         [
           {
             "node": "n8n",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Discord Notification",
             "type": "main",
             "index": 0
           }
@@ -481,15 +486,37 @@
         620
       ],
       "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/1134662352969683036/6TEEKh2hwKT8Enuupn_H_nlKxe5keMk6AeG3uoUoAfSwgbpGipHwNelSk7Pxl_vmHwmy",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Github Backup\",\n        \"url\": \"http://177.66.30.74:5678/\"\n      },\n      \"title\": \"Running Workflow Backup\",\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "c8a7c9fa-f2ce-440f-a98c-c0e667da25c9",
+      "name": "Discord Notification",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -460,
+        460
+      ]
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "aSBBM637H6nv57t8",
+    "timezone": "America/Sao_Paulo"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2023-09-27T11:19:59.778Z",
-  "versionId": "a3b9c4b5-4132-4344-b429-5fadde899f23"
+  "triggerCount": 1,
+  "updatedAt": "2023-09-27T13:36:41.362Z",
+  "versionId": "4ff1cebc-7687-49a1-a450-6f339fa48bd5"
 }
