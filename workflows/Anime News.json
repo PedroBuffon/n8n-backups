@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "HTTP Request": {
       "main": [
@@ -255,8 +255,8 @@
         "rule": {
           "interval": [
             {
-              "field": "minutes",
-              "minutesInterval": 30
+              "field": "cronExpression",
+              "expression": "*/30 * * * *"
             }
           ]
         }
@@ -276,7 +276,7 @@
         "url": "https://discord.com/api/webhooks/1134551853963681872/4xGEKyAeeL9kli3wL6gl-3qgzQVtTv3exvkTR8lvWb1oZf9NwBBTTHtFW_XE_v3oqLCi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"contentSnippet\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Anime News Network | Category: {{ $json[\"categories\"][0]}}\",\n        \"url\": \"https://www.animenewsnetwork.com/\",\n        \"icon_url\": \"https://www.animenewsnetwork.com/favicon.ico\"\n      },\n      \"title\": \"{{ $json[\"title\"] }}\",\n      \"url\": \"{{ $json[\"link\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      },\n      \"timestamp\": \"{{ $json[\"Date\"] }}\"\n    }\n  ]\n}",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"contentSnippet\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Anime News Network | Category: {{ $json[\"categories\"][0]}}\",\n        \"url\": \"https://www.animenewsnetwork.com/\"\n      },\n      \"title\": \"{{ $json[\"title\"] }}\",\n      \"url\": \"{{ $json[\"link\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      },\n      \"timestamp\": \"{{ $json[\"Date\"] }}\"\n    }\n  ]\n}",
         "options": {}
       },
       "id": "af9348b3-1437-4782-82bd-df8d6273b3ab",
@@ -294,11 +294,70 @@
     "executionOrder": "v1",
     "saveManualExecutions": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "aSBBM637H6nv57t8"
+    "errorWorkflow": "aSBBM637H6nv57t8",
+    "timezone": "America/Sao_Paulo"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    },
+    "global": {
+      "oldRSSIds": [
+        "Wed, 27 Sep 2023 20:29:25 -0400",
+        "Wed, 27 Sep 2023 16:30:00 -0400",
+        "Wed, 27 Sep 2023 16:00:00 -0400",
+        "Wed, 27 Sep 2023 15:41:38 -0400",
+        "Wed, 27 Sep 2023 14:20:35 -0400",
+        "Wed, 27 Sep 2023 14:05:34 -0400",
+        "Wed, 27 Sep 2023 12:47:40 -0400",
+        "Wed, 27 Sep 2023 12:28:15 -0400",
+        "Wed, 27 Sep 2023 12:01:19 -0400",
+        "Wed, 27 Sep 2023 11:35:55 -0400",
+        "Wed, 27 Sep 2023 11:00:00 -0400",
+        "Wed, 27 Sep 2023 10:30:39 -0400",
+        "Wed, 27 Sep 2023 07:27:44 -0400",
+        "Wed, 27 Sep 2023 06:36:07 -0400",
+        "Wed, 27 Sep 2023 05:35:00 -0400",
+        "Wed, 27 Sep 2023 05:00:00 -0400",
+        "Wed, 27 Sep 2023 03:12:25 -0400",
+        "Tue, 26 Sep 2023 20:45:00 -0400",
+        "Tue, 26 Sep 2023 17:00:00 -0400",
+        "Tue, 26 Sep 2023 16:28:54 -0400",
+        "Tue, 26 Sep 2023 15:30:00 -0400",
+        "Tue, 26 Sep 2023 14:30:00 -0400",
+        "Tue, 26 Sep 2023 13:30:00 -0400",
+        "Tue, 26 Sep 2023 12:30:00 -0400",
+        "Tue, 26 Sep 2023 11:24:28 -0400",
+        "Tue, 26 Sep 2023 11:00:14 -0400",
+        "Tue, 26 Sep 2023 10:35:33 -0400",
+        "Tue, 26 Sep 2023 09:50:30 -0400",
+        "Tue, 26 Sep 2023 07:14:26 -0400",
+        "Tue, 26 Sep 2023 06:23:45 -0400",
+        "Tue, 26 Sep 2023 06:00:53 -0400",
+        "Mon, 25 Sep 2023 23:24:57 -0400",
+        "Mon, 25 Sep 2023 22:59:45 -0400",
+        "Mon, 25 Sep 2023 21:19:37 -0400",
+        "Mon, 25 Sep 2023 19:31:49 -0400",
+        "Mon, 25 Sep 2023 18:00:00 -0400",
+        "Mon, 25 Sep 2023 17:00:00 -0400",
+        "Mon, 25 Sep 2023 16:00:00 -0400",
+        "Mon, 25 Sep 2023 15:30:00 -0400",
+        "Mon, 25 Sep 2023 14:30:00 -0400",
+        "Mon, 25 Sep 2023 12:32:32 -0400",
+        "Mon, 25 Sep 2023 12:01:01 -0400",
+        "Mon, 25 Sep 2023 11:00:00 -0400",
+        "Mon, 25 Sep 2023 10:30:17 -0400",
+        "Mon, 25 Sep 2023 10:00:00 -0400",
+        "Mon, 25 Sep 2023 09:15:00 -0400",
+        "Mon, 25 Sep 2023 08:15:00 -0400",
+        "Mon, 25 Sep 2023 06:09:11 -0400",
+        "Mon, 25 Sep 2023 04:29:18 -0400",
+        "Mon, 25 Sep 2023 02:20:04 -0400"
+      ]
+    }
+  },
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2023-09-27T10:59:06.900Z",
-  "versionId": "65179caa-7c0c-430e-95f7-670faf32271c"
+  "triggerCount": 1,
+  "updatedAt": "2023-09-27T23:30:00.701Z",
+  "versionId": "5c4c02a8-bad9-4528-8364-f582f711a85f"
 }
