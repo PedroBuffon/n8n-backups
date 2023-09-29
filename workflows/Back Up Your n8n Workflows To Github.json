@@ -490,7 +490,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "https://discord.com/api/webhooks/1134662352969683036/6TEEKh2hwKT8Enuupn_H_nlKxe5keMk6AeG3uoUoAfSwgbpGipHwNelSk7Pxl_vmHwmy",
+        "url": "https://discord.com/api/webhooks/1156961920549662730/QS7v4RTIkbvKJ9Rqj9ER90k53UIX2PRMtBc0bqcRl3vvrLaINmeyh3kAq_H6ti38-VbP",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"embeds\": [\n    {\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Github Backup\",\n        \"url\": \"http://177.66.30.74:5678/\"\n      },\n      \"title\": \"Running Workflow Backup\",\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
@@ -517,6 +517,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-09-27T13:36:41.362Z",
-  "versionId": "4ff1cebc-7687-49a1-a450-6f339fa48bd5"
+  "updatedAt": "2023-09-28T11:34:00.243Z",
+  "versionId": "4d0fdc79-31f7-4ace-a61b-544e8a19b4fd"
 }
