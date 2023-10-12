@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Discord Notification",
+            "node": "Discord Send",
             "type": "main",
             "index": 0
           }
@@ -95,8 +95,9 @@
       ]
     }
   },
-  "createdAt": "2023-09-27T10:36:04.794Z",
+  "createdAt": "2023-09-27T13:36:04.794Z",
   "id": "DGsIIzuohijrgdYR",
+  "meta": null,
   "name": "Anime News",
   "nodes": [
     {
@@ -272,21 +273,31 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://discord.com/api/webhooks/1134551853963681872/4xGEKyAeeL9kli3wL6gl-3qgzQVtTv3exvkTR8lvWb1oZf9NwBBTTHtFW_XE_v3oqLCi",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"contentSnippet\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"Anime News Network | Category: {{ $json[\"categories\"][0]}}\",\n        \"url\": \"https://www.animenewsnetwork.com/\"\n      },\n      \"title\": \"{{ $json[\"title\"] }}\",\n      \"url\": \"{{ $json[\"link\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      },\n      \"timestamp\": \"{{ $json[\"Date\"] }}\"\n    }\n  ]\n}",
-        "options": {}
+        "channelId": "1058807311877034124",
+        "embed": true,
+        "title": "={{ $json[\"title\"] }}",
+        "url": "={{ $json[\"link\"] }}",
+        "authorName": "=Anime News Network | Category: {{ $json[\"categories\"][0]}}",
+        "authorUrl": "https://www.animenewsnetwork.com/",
+        "description": "={{ $json[\"contentSnippet\"] }}",
+        "imageUrl": "={{ $json[\"imgURL\"] }}",
+        "footerText": "Powered By n8n",
+        "timestamp": "={{ $json[\"Date\"] }}"
       },
-      "id": "af9348b3-1437-4782-82bd-df8d6273b3ab",
-      "name": "Discord Notification",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
+      "id": "e2059b82-c59a-418c-a2a0-825d2c4798eb",
+      "name": "Discord Send",
+      "type": "n8n-nodes-discord-fork.discord",
+      "typeVersion": 1,
       "position": [
-        1400,
+        1420,
         440
-      ]
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "yFh4KghxV1AtVSDF",
+          "name": "Discord App account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -303,6 +314,75 @@
     },
     "global": {
       "oldRSSIds": [
+        "Wed, 11 Oct 2023 21:11:19 -0400",
+        "Wed, 11 Oct 2023 19:30:18 -0400",
+        "Wed, 11 Oct 2023 19:00:00 -0400",
+        "Wed, 11 Oct 2023 18:00:00 -0400",
+        "Wed, 11 Oct 2023 17:00:00 -0400",
+        "Wed, 11 Oct 2023 16:00:02 -0400",
+        "Wed, 11 Oct 2023 16:00:00 -0400",
+        "Wed, 11 Oct 2023 15:00:00 -0400",
+        "Wed, 11 Oct 2023 14:00:00 -0400",
+        "Wed, 11 Oct 2023 11:30:00 -0400",
+        "Wed, 11 Oct 2023 11:21:03 -0400",
+        "Wed, 11 Oct 2023 10:50:00 -0400",
+        "Wed, 11 Oct 2023 10:04:33 -0400",
+        "Wed, 11 Oct 2023 08:28:01 -0400",
+        "Wed, 11 Oct 2023 07:28:42 -0400",
+        "Wed, 11 Oct 2023 00:52:29 -0400",
+        "Tue, 10 Oct 2023 23:58:16 -0400",
+        "Tue, 10 Oct 2023 23:20:04 -0400",
+        "Tue, 10 Oct 2023 22:24:08 -0400",
+        "Tue, 10 Oct 2023 21:47:54 -0400",
+        "Tue, 10 Oct 2023 21:36:26 -0400",
+        "Tue, 10 Oct 2023 16:49:40 -0400",
+        "Tue, 10 Oct 2023 16:21:15 -0400",
+        "Tue, 10 Oct 2023 16:00:04 -0400",
+        "Tue, 10 Oct 2023 13:12:11 -0400",
+        "Tue, 10 Oct 2023 12:41:41 -0400",
+        "Tue, 10 Oct 2023 12:00:00 -0400",
+        "Tue, 10 Oct 2023 11:00:00 -0400",
+        "Tue, 10 Oct 2023 10:00:00 -0400",
+        "Tue, 10 Oct 2023 03:20:19 -0400",
+        "Tue, 10 Oct 2023 01:23:44 -0400",
+        "Tue, 10 Oct 2023 00:00:00 -0400",
+        "Mon, 09 Oct 2023 23:29:31 -0400",
+        "Mon, 09 Oct 2023 16:01:00 -0400",
+        "Mon, 09 Oct 2023 15:45:00 -0400",
+        "Mon, 09 Oct 2023 12:32:47 -0400",
+        "Mon, 09 Oct 2023 11:39:51 -0400",
+        "Mon, 09 Oct 2023 11:00:00 -0400",
+        "Mon, 09 Oct 2023 10:50:17 -0400",
+        "Mon, 09 Oct 2023 06:52:02 -0400",
+        "Mon, 09 Oct 2023 04:16:50 -0400",
+        "Mon, 09 Oct 2023 03:51:47 -0400",
+        "Sun, 08 Oct 2023 06:59:28 -0400",
+        "Sun, 08 Oct 2023 05:22:12 -0400",
+        "Sun, 08 Oct 2023 05:10:45 -0400",
+        "Sun, 08 Oct 2023 01:28:14 -0400",
+        "Sat, 07 Oct 2023 22:51:20 -0400",
+        "Sat, 07 Oct 2023 10:15:00 -0400",
+        "Sat, 07 Oct 2023 08:15:00 -0400",
+        "Sat, 07 Oct 2023 05:01:30 -0400",
+        "Sat, 07 Oct 2023 03:21:22 -0400",
+        "Fri, 06 Oct 2023 16:00:00 -0400",
+        "Fri, 06 Oct 2023 15:30:00 -0400",
+        "Fri, 06 Oct 2023 14:30:22 -0400",
+        "Fri, 06 Oct 2023 14:00:00 -0400",
+        "Fri, 06 Oct 2023 13:00:00 -0400",
+        "Fri, 06 Oct 2023 12:11:17 -0400",
+        "Fri, 06 Oct 2023 12:00:00 -0400",
+        "Fri, 06 Oct 2023 11:00:00 -0400",
+        "Fri, 06 Oct 2023 08:09:12 -0400",
+        "Fri, 06 Oct 2023 06:56:11 -0400",
+        "Fri, 06 Oct 2023 06:14:39 -0400",
+        "Fri, 06 Oct 2023 06:00:44 -0400",
+        "Fri, 06 Oct 2023 05:09:11 -0400",
+        "Fri, 06 Oct 2023 03:54:06 -0400",
+        "Fri, 06 Oct 2023 03:39:11 -0400",
+        "Fri, 06 Oct 2023 00:27:50 -0400",
+        "Fri, 06 Oct 2023 00:02:31 -0400",
+        "Thu, 05 Oct 2023 22:55:49 -0400",
         "Thu, 05 Oct 2023 15:41:29 -0400",
         "Thu, 05 Oct 2023 14:35:23 -0400",
         "Thu, 05 Oct 2023 14:03:33 -0400",
@@ -476,6 +556,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-10-05T23:30:01.538Z",
-  "versionId": "5c4c02a8-bad9-4528-8364-f582f711a85f"
+  "updatedAt": "2023-10-12T02:30:02.654Z",
+  "versionId": "d8d2539d-edf1-4b95-b9a4-332ac06b8a6b"
 }
