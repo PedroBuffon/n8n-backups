@@ -1,22 +1,11 @@
 {
   "active": true,
   "connections": {
-    "Filter Anime News": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Only get new RSS": {
       "main": [
         [
           {
-            "node": "Filter Anime News",
+            "node": "Filter Inputs",
             "type": "main",
             "index": 0
           }
@@ -45,11 +34,22 @@
         ]
       ]
     },
-    "Code": {
+    "Regex": {
       "main": [
         [
           {
             "node": "Discord Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Inputs": {
+      "main": [
+        [
+          {
+            "node": "Regex",
             "type": "main",
             "index": 0
           }
@@ -62,50 +62,6 @@
   "meta": null,
   "name": "Erai Raws Notification",
   "nodes": [
-    {
-      "parameters": {
-        "keepOnlySet": true,
-        "values": {
-          "string": [
-            {
-              "name": "title",
-              "value": "={{ $json[\"title\"] }}"
-            },
-            {
-              "name": "link",
-              "value": "={{ $json[\"link\"] }}"
-            },
-            {
-              "name": "Date",
-              "value": "={{ $json[\"isoDate\"] }}"
-            },
-            {
-              "name": "contentSnippet",
-              "value": "={{ $json[\"contentSnippet\"] }}"
-            },
-            {
-              "name": "guid",
-              "value": "={{ $json[\"guid\"] }}"
-            },
-            {
-              "name": "categories",
-              "value": "={{ $json[\"categories\"] }}"
-            }
-          ]
-        },
-        "options": {
-          "dotNotation": true
-        }
-      },
-      "id": "288bcc19-f04b-417d-bc9c-10ce79591671",
-      "name": "Filter Anime News",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        500,
-        380
-      ]
-    },
     {
       "parameters": {
         "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"pubDate\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['pubDate']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
@@ -154,9 +110,9 @@
     },
     {
       "parameters": {
-        "channelId": "1122879436795166853",
+        "channelId": "1041723229569552484",
         "embed": true,
-        "title": "={{ $json[\"title\"] }}",
+        "title": "={{ $json[\"RegexName\"] }}",
         "url": "={{ $json[\"link\"] }}",
         "authorName": "=Erai-raws",
         "authorUrl": "https://www.erai-raws.info/",
@@ -170,7 +126,7 @@
       "type": "n8n-nodes-discord-fork.discord",
       "typeVersion": 1,
       "position": [
-        860,
+        820,
         380
       ],
       "credentials": {
@@ -182,14 +138,58 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\nconst inputString = item.json.title;\n\n// Define a mapping of language codes to emoji flags\nconst languageToEmoji = {\n    \"ENG\": \"[🇬🇧]\",\n    \"POR-BR\": \"[🇧🇷]\",\n    \"SPA-LA\": \"[🇪🇸]\",\n    \"SPA\": \"[🇪🇸]\",\n    \"ARA\": \"[🇸🇦]\",\n    \"FRE\": \"[🇫🇷]\",\n    \"GER\": \"[🇩🇪]\",\n    \"ITA\": \"[🇮🇹]\",\n    \"RUS\": \"[🇷🇺]\"\n};\n\n// Remove the \"[Erai-raws]\" portion and the following space\nconst stringWithoutEraiRaws = inputString.replace(/\\[Erai-raws\\]\\s+/, '');\n\n// Use a regular expression to extract the language codes\nconst languageCodes = stringWithoutEraiRaws.match(/\\[[A-Z-]+\\]/g);\n\n// Replace language codes with emoji flags in square brackets\nconst outputString = stringWithoutEraiRaws.replace(/\\[[A-Z-]+\\]/g, (match) => {\n    const languageCode = match.slice(1, -1); // Remove square brackets\n    const emojiFlag = languageToEmoji[languageCode];\n    return emojiFlag ? emojiFlag : match; // Use emoji flag if available, otherwise keep the original code\n});\n  \n  item.json.RegexName = outputString;\n}\n\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\nconst inputString = item.json.title;\n\n// Define a mapping of language codes to emoji flags\nconst languageToEmoji = {\n    \"ENG\": \"[🇬🇧]\",\n    \"POR-BR\": \"[🇧🇷]\",\n    \"SPA-LA\": \"[🇪🇸]\",\n    \"SPA\": \"[🇪🇸]\",\n    \"ARA\": \"[🇸🇦]\",\n    \"FRE\": \"[🇫🇷]\",\n    \"GER\": \"[🇩🇪]\",\n    \"ITA\": \"[🇮🇹]\",\n    \"RUS\": \"[🇷🇺]\"\n};\n\n// Remove the \"[Erai-raws]\" portion and the following space\nconst stringWithoutEraiRawsAndMultipleSubtitle = inputString.replace(/\\[Erai-raws\\]\\s+/, '').replace(/\\[Multiple Subtitle\\]\\s+/, '');\n\n// Use a regular expression to extract the language codes\nconst languageCodes = stringWithoutEraiRawsAndMultipleSubtitle.match(/\\[[A-Z-]+\\]/g);\n\n// Replace language codes with emoji flags in square brackets\nconst outputString = stringWithoutEraiRawsAndMultipleSubtitle.replace(/\\[[A-Z-]+\\]/g, (match) => {\n    const languageCode = match.slice(1, -1); // Remove square brackets\n    const emojiFlag = languageToEmoji[languageCode];\n    return emojiFlag ? emojiFlag : match; // Use emoji flag if available, otherwise keep the original code\n});\n  \n  item.json.RegexName = outputString;\n}\n\n\nreturn $input.all();"
       },
       "id": "2d55723b-27e5-4a1f-8bd5-7a54400530bf",
-      "name": "Code",
+      "name": "Regex",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        680,
+        660,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"title\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"isoDate\"] }}"
+            },
+            {
+              "name": "contentSnippet",
+              "value": "={{ $json[\"contentSnippet\"] }}"
+            },
+            {
+              "name": "guid",
+              "value": "={{ $json[\"guid\"] }}"
+            },
+            {
+              "name": "categories",
+              "value": "={{ $json[\"categories\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "288bcc19-f04b-417d-bc9c-10ce79591671",
+      "name": "Filter Inputs",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        500,
         380
       ]
     }
@@ -208,6 +208,18 @@
     },
     "global": {
       "oldRSSIds": [
+        "Wed, 01 Nov 2023 17:37:01 -0000",
+        "Wed, 01 Nov 2023 17:17:19 -0000",
+        "Wed, 01 Nov 2023 16:53:53 -0000",
+        "Wed, 01 Nov 2023 16:29:37 -0000",
+        "Wed, 01 Nov 2023 14:30:25 -0000",
+        "Wed, 01 Nov 2023 13:57:53 -0000",
+        "Wed, 01 Nov 2023 13:22:33 -0000",
+        "Wed, 01 Nov 2023 12:07:27 -0000",
+        "Tue, 31 Oct 2023 18:30:24 -0000",
+        "Tue, 31 Oct 2023 18:03:04 -0000",
+        "Tue, 31 Oct 2023 15:30:59 -0000",
+        "Tue, 31 Oct 2023 15:02:27 -0000",
         "Mon, 30 Oct 2023 17:45:51 -0000",
         "Mon, 30 Oct 2023 17:12:23 -0000",
         "Mon, 30 Oct 2023 17:00:18 -0000",
@@ -772,6 +784,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-10-31T02:56:46.765Z",
-  "versionId": "da1bfd42-f154-4642-8fa6-b27c164d4451"
+  "updatedAt": "2023-11-02T03:00:02.644Z",
+  "versionId": "a6589c71-b588-4c04-ac4c-8e547bd5dbc1"
 }
