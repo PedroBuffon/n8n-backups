@@ -1,0 +1,42 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2023-11-03T16:14:47.302Z",
+  "id": "hPX4qVxb4U1THLz0",
+  "meta": null,
+  "name": "Test Flow",
+  "nodes": [
+    {
+      "parameters": {
+        "channelId": "1122879436795166853",
+        "content": "teste",
+        "mentionRoles": [
+          "1170039609447690425"
+        ]
+      },
+      "id": "428950ba-da69-4b47-9ad5-860236223ec6",
+      "name": "Discord Send",
+      "type": "n8n-nodes-discord-fork.discord",
+      "typeVersion": 1,
+      "position": [
+        760,
+        220
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "yFh4KghxV1AtVSDF",
+          "name": "Discord App account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-03T17:54:20.991Z",
+  "versionId": "baee5f6f-0c07-486d-aa5d-00f72a48206b"
+}
