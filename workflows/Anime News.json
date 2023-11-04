@@ -282,7 +282,10 @@
         "description": "={{ $json[\"contentSnippet\"] }}",
         "imageUrl": "={{ $json[\"imgURL\"] }}",
         "footerText": "Powered By n8n",
-        "timestamp": "={{ $json[\"Date\"] }}"
+        "timestamp": "={{ $json[\"Date\"] }}",
+        "botCustomization": true,
+        "botActivity": "Nothing",
+        "botActivityType": 3
       },
       "id": "e2059b82-c59a-418c-a2a0-825d2c4798eb",
       "name": "Discord Send",
@@ -314,6 +317,16 @@
     },
     "global": {
       "oldRSSIds": [
+        "Fri, 03 Nov 2023 16:00:00 -0400",
+        "Fri, 03 Nov 2023 14:00:00 -0400",
+        "Fri, 03 Nov 2023 13:38:29 -0400",
+        "Fri, 03 Nov 2023 13:16:31 -0400",
+        "Fri, 03 Nov 2023 13:00:00 -0400",
+        "Fri, 03 Nov 2023 12:00:00 -0400",
+        "Fri, 03 Nov 2023 10:25:53 -0400",
+        "Fri, 03 Nov 2023 08:45:03 -0400",
+        "Fri, 03 Nov 2023 00:24:29 -0400",
+        "Fri, 03 Nov 2023 00:02:57 -0400",
         "Thu, 02 Nov 2023 21:34:53 -0400",
         "Thu, 02 Nov 2023 15:50:47 -0400",
         "Thu, 02 Nov 2023 15:11:55 -0400",
@@ -864,6 +877,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-11-03T03:00:00.628Z",
-  "versionId": "d8d2539d-edf1-4b95-b9a4-332ac06b8a6b"
+  "updatedAt": "2023-11-04T03:00:00.641Z",
+  "versionId": "71cf174f-3e21-4a26-bf64-cd22373c85b7"
 }
