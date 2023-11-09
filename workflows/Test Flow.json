@@ -1,26 +1,159 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "SSH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SSH": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Discord Send",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Read Binary Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Binary Files": {
+      "main": [
+        [
+          {
+            "node": "Discord Send1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2023-11-03T16:14:47.302Z",
   "id": "hPX4qVxb4U1THLz0",
   "meta": null,
   "name": "Test Flow",
   "nodes": [
     {
+      "parameters": {},
+      "id": "2a5da52d-9502-4563-8e7c-67b573a5399a",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "privateKey",
+        "command": "./script.sh",
+        "cwd": "/media/downloads/n8n/"
+      },
+      "id": "0e290497-4266-46d0-885f-6910e9b35852",
+      "name": "SSH",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        40
+      ],
+      "credentials": {
+        "sshPrivateKey": {
+          "id": "efIUsRHLpFz2o5AL",
+          "name": "SSH Buffon Pc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.code }}",
+              "value2": "1"
+            }
+          ]
+        }
+      },
+      "id": "c82294cf-ff28-42ee-9383-edcca1be6f76",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        40
+      ]
+    },
+    {
       "parameters": {
         "channelId": "1122879436795166853",
-        "content": "teste",
-        "mentionRoles": [
-          "1170039609447690425"
-        ]
+        "content": "teste erro"
       },
-      "id": "428950ba-da69-4b47-9ad5-860236223ec6",
+      "id": "2dd0ee12-4b73-4952-9553-16d9dcf52087",
       "name": "Discord Send",
       "type": "n8n-nodes-discord-fork.discord",
       "typeVersion": 1,
       "position": [
-        760,
-        220
+        1720,
+        -140
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "yFh4KghxV1AtVSDF",
+          "name": "Discord App account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/media/log.txt"
+      },
+      "id": "3c761e60-6f1b-4bb4-a258-2031e85b6946",
+      "name": "Read Binary Files",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "channelId": "1122879436795166853"
+      },
+      "id": "f9610ecb-403d-4fb4-9388-249dd257a14c",
+      "name": "Discord Send1",
+      "type": "n8n-nodes-discord-fork.discord",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        180
       ],
       "credentials": {
         "discordApi": {
@@ -37,6 +170,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-11-03T17:54:20.991Z",
-  "versionId": "baee5f6f-0c07-486d-aa5d-00f72a48206b"
+  "updatedAt": "2023-11-08T13:54:07.808Z",
+  "versionId": "b113884a-5a2f-4f2f-b5f1-90a4d5c95beb"
 }
