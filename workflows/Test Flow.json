@@ -161,6 +161,36 @@
           "name": "Discord App account"
         }
       }
+    },
+    {
+      "parameters": {
+        "url": "https://sonarr.buffon.cloud/api/v3/update",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "options": {}
+      },
+      "id": "3dc8e101-b290-4778-b1e7-17ccad65731d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1200,
+        220
+      ],
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "LKPnYbpUSvDan7MG",
+          "name": "Custom Auth account"
+        },
+        "httpHeaderAuth": {
+          "id": "pzYHVOR2HWISp9GY",
+          "name": "Sonarr"
+        },
+        "httpQueryAuth": {
+          "id": "Q2gG6YQCr1w2lH5G",
+          "name": "Sonarr"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -170,6 +200,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-11-08T13:54:07.808Z",
-  "versionId": "b113884a-5a2f-4f2f-b5f1-90a4d5c95beb"
+  "updatedAt": "2023-11-17T17:02:49.220Z",
+  "versionId": "0860a529-8359-49a0-bb09-e1c14e407dab"
 }
