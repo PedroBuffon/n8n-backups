@@ -1,0 +1,173 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Discord Send",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Every 12 hours": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-17T17:04:10.721Z",
+  "id": "ZuSO0u1CL3S7gkXk",
+  "meta": null,
+  "name": "Sonarr Check Updates",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://sonarr.buffon.cloud/api/v3/update",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "options": {}
+      },
+      "id": "85d513fd-03ef-471f-985e-76e4ed13b1fc",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1020,
+        360
+      ],
+      "credentials": {
+        "httpCustomAuth": {
+          "id": "LKPnYbpUSvDan7MG",
+          "name": "Custom Auth account"
+        },
+        "httpQueryAuth": {
+          "id": "Q2gG6YQCr1w2lH5G",
+          "name": "Sonarr"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newUpdatesId = items.map(item => item.json[\"releaseDate\"]);\nconst oldUpdatesId = staticData.oldUpdatesId; \n\nif (!oldUpdatesId) {\n  staticData.oldUpdatesId = newUpdatesId;\n  return items;\n}\n\n\nconst actualNewUpdateId = newUpdatesId.filter((id) => !oldUpdatesId.includes(id));\nconst actualNewUpdate = items.filter((data) => actualNewUpdateId.includes(data.json['releaseDate']));\nstaticData.oldUpdatesId = [...actualNewUpdateId, ...oldUpdatesId];\n\nreturn actualNewUpdate;"
+      },
+      "name": "Only get new RSS",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        560,
+        180
+      ],
+      "typeVersion": 1,
+      "id": "1bc7f2df-0717-4d0b-9560-dc230d5b28c1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "channelId": "1122879436795166853",
+        "embed": true,
+        "title": "=Sonarr New Update Version {{ $json[\"version\"] }}",
+        "url": "={{ $json[\"url\"] }}",
+        "authorName": "=Sonarr Update Checker | Branch: {{ $json[\"branch\"] }}",
+        "authorIconUrl": "https://sonarr.tv/img/logo-256.png",
+        "authorUrl": "https://sonarr.tv/",
+        "description": "=New:\n```\n{{ $json[\"changes\"][\"new\"].join('\\n') }}\n```\nFixed:\n```\n{{ $json[\"changes\"][\"fixed\"].join('\\n') }}\n```",
+        "footerText": "Powered By n8n",
+        "timestamp": "={{ $json[\"releaseDate\"] }}",
+        "botCustomization": true,
+        "botActivity": "Nothing",
+        "botActivityType": 3
+      },
+      "id": "54af9f4f-7286-481b-bb98-0362fa5dbd7b",
+      "name": "Discord Send",
+      "type": "n8n-nodes-discord-fork.discord",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        340
+      ],
+      "credentials": {
+        "discordApi": {
+          "id": "yFh4KghxV1AtVSDF",
+          "name": "Discord App account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.latest }}",
+              "value2": "={{ true }}"
+            },
+            {
+              "value1": "={{ $json.installed }}",
+              "value2": "={{ false }}"
+            }
+          ]
+        }
+      },
+      "id": "a8a9162f-eff4-40d2-b685-aed349903eb5",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "0 0 * * *"
+            }
+          ]
+        }
+      },
+      "id": "e75a7323-e0da-4034-ad43-58f93746b24e",
+      "name": "Every 12 hours",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        820,
+        360
+      ],
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "aSBBM637H6nv57t8"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-17T17:33:29.203Z",
+  "versionId": "0a9d114b-72c0-4ad2-870f-49fcef749397"
+}
