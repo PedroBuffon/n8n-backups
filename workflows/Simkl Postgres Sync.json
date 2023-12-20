@@ -12,16 +12,6 @@
         ]
       ]
     },
-    "Read From File": {
-      "main": [
-        []
-      ]
-    },
-    "Convert To Spreadsheet": {
-      "main": [
-        []
-      ]
-    },
     "simkl api": {
       "main": [
         [
@@ -34,32 +24,32 @@
       ]
     }
   },
-  "createdAt": "2023-10-26T13:16:57.933Z",
-  "id": "EHxWA9ShcCfYs22C",
+  "createdAt": "2023-12-19T12:48:51.632Z",
+  "id": "iMujppmavZLr21wI",
   "meta": null,
   "name": "Simkl Postgres Sync",
   "nodes": [
     {
       "parameters": {},
-      "id": "976a254c-96d0-48ff-92a2-e01eff8cd114",
+      "id": "e1ce89fa-f708-4299-a53b-73e1ab302971",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        820,
-        360
+        300,
+        640
       ]
     },
     {
       "parameters": {
         "filePath": "/media/SimklBackup.csv"
       },
-      "id": "a5eea988-474e-4e25-ab4b-66e8957331a4",
+      "id": "896062a0-648f-44e7-9797-5a230095355b",
       "name": "Read From File",
       "type": "n8n-nodes-base.readBinaryFile",
       "position": [
-        1000,
-        360
+        480,
+        640
       ],
       "typeVersion": 1
     },
@@ -70,12 +60,12 @@
           "readAsString": true
         }
       },
-      "id": "d7e72e6e-90ec-42dd-9011-3c6a287c9852",
+      "id": "6f1bfa06-fb65-4d14-a3eb-8d055132a772",
       "name": "Convert To Spreadsheet",
       "type": "n8n-nodes-base.spreadsheetFile",
       "position": [
-        1140,
-        420
+        620,
+        700
       ],
       "typeVersion": 1
     },
@@ -210,20 +200,14 @@
         },
         "options": {}
       },
-      "id": "d85ada3c-cbf3-4c3d-bb1c-49ab04a6bf72",
+      "id": "608d2945-fc31-462b-b917-81da730a10fc",
       "name": "Postgres",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.3,
       "position": [
-        1360,
-        360
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "ZZQrpoD2YxA0G2aj",
-          "name": "Simkl Postgres account"
-        }
-      }
+        840,
+        640
+      ]
     },
     {
       "parameters": {
@@ -247,23 +231,27 @@
         },
         "options": {}
       },
-      "id": "1d062002-43d2-4c7d-be7e-efd4bd543325",
+      "id": "38d94260-8e84-4bd5-bc6b-36242501e47b",
       "name": "simkl api",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        980,
-        180
+        460,
+        460
       ]
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "America/Sao_Paulo",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "e5gs9CPtjGB5lx52"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-10-27T02:44:41.637Z",
-  "versionId": "b6acb555-8617-4a52-a9ed-819793e34a8e"
+  "updatedAt": "2023-12-19T12:49:24.656Z",
+  "versionId": "2a2c65e6-3ba1-4b2e-9182-b962924fe527"
 }
