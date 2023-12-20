@@ -53,20 +53,20 @@
       ]
     }
   },
-  "createdAt": "2023-11-03T16:14:47.302Z",
-  "id": "hPX4qVxb4U1THLz0",
+  "createdAt": "2023-12-19T12:51:53.118Z",
+  "id": "BZQGPlUFeVR2dzgg",
   "meta": null,
   "name": "Test Flow",
   "nodes": [
     {
       "parameters": {},
-      "id": "2a5da52d-9502-4563-8e7c-67b573a5399a",
+      "id": "b279416a-2806-4194-9f2a-ffdff2984b19",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        1080,
-        40
+        -180,
+        640
       ]
     },
     {
@@ -75,20 +75,14 @@
         "command": "./script.sh",
         "cwd": "/media/downloads/n8n/"
       },
-      "id": "0e290497-4266-46d0-885f-6910e9b35852",
+      "id": "ad7db640-f0d4-4eea-ba1a-01ca3c5c9d37",
       "name": "SSH",
       "type": "n8n-nodes-base.ssh",
       "typeVersion": 1,
       "position": [
-        1300,
-        40
-      ],
-      "credentials": {
-        "sshPrivateKey": {
-          "id": "efIUsRHLpFz2o5AL",
-          "name": "SSH Buffon Pc"
-        }
-      }
+        40,
+        640
+      ]
     },
     {
       "parameters": {
@@ -101,13 +95,13 @@
           ]
         }
       },
-      "id": "c82294cf-ff28-42ee-9383-edcca1be6f76",
+      "id": "dc7d52c0-09ab-4c47-aed4-affc7530f9e1",
       "name": "IF",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1520,
-        40
+        260,
+        640
       ]
     },
     {
@@ -115,17 +109,17 @@
         "channelId": "1122879436795166853",
         "content": "teste erro"
       },
-      "id": "2dd0ee12-4b73-4952-9553-16d9dcf52087",
+      "id": "34561fe3-d133-4861-a58b-370c35f41041",
       "name": "Discord Send",
       "type": "n8n-nodes-discord-fork.discord",
       "typeVersion": 1,
       "position": [
-        1720,
-        -140
+        460,
+        460
       ],
       "credentials": {
         "discordApi": {
-          "id": "yFh4KghxV1AtVSDF",
+          "id": "pMpClPZ0113ZS7QO",
           "name": "Discord App account"
         }
       }
@@ -134,33 +128,27 @@
       "parameters": {
         "fileSelector": "/media/log.txt"
       },
-      "id": "3c761e60-6f1b-4bb4-a258-2031e85b6946",
+      "id": "88c7e2d0-51b5-47b5-8226-9b84bb738e8a",
       "name": "Read Binary Files",
       "type": "n8n-nodes-base.readBinaryFiles",
       "typeVersion": 1,
       "position": [
-        1720,
-        180
+        460,
+        780
       ]
     },
     {
       "parameters": {
         "channelId": "1122879436795166853"
       },
-      "id": "f9610ecb-403d-4fb4-9388-249dd257a14c",
+      "id": "3b5b75ff-f02e-456c-a674-03ce372796eb",
       "name": "Discord Send1",
       "type": "n8n-nodes-discord-fork.discord",
       "typeVersion": 1,
       "position": [
-        1900,
-        180
-      ],
-      "credentials": {
-        "discordApi": {
-          "id": "yFh4KghxV1AtVSDF",
-          "name": "Discord App account"
-        }
-      }
+        640,
+        780
+      ]
     },
     {
       "parameters": {
@@ -169,28 +157,14 @@
         "genericAuthType": "httpQueryAuth",
         "options": {}
       },
-      "id": "3dc8e101-b290-4778-b1e7-17ccad65731d",
+      "id": "2f321f49-3876-48f2-8898-6d16475e4a5a",
       "name": "HTTP Request",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1200,
-        220
-      ],
-      "credentials": {
-        "httpCustomAuth": {
-          "id": "LKPnYbpUSvDan7MG",
-          "name": "Custom Auth account"
-        },
-        "httpHeaderAuth": {
-          "id": "pzYHVOR2HWISp9GY",
-          "name": "Sonarr"
-        },
-        "httpQueryAuth": {
-          "id": "Q2gG6YQCr1w2lH5G",
-          "name": "Sonarr"
-        }
-      }
+        -60,
+        820
+      ]
     }
   ],
   "pinData": {},
@@ -200,6 +174,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-11-22T19:49:20.272Z",
-  "versionId": "be123433-7c45-42a7-88f5-c24dc334d1e6"
+  "updatedAt": "2023-12-19T13:04:29.759Z",
+  "versionId": "e0bfb1ab-eb02-4d91-89bf-769c3e87e0b2"
 }
