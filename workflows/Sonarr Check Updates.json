@@ -20,8 +20,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Every 12 hours": {
@@ -36,8 +35,8 @@
       ]
     }
   },
-  "createdAt": "2023-11-17T17:04:10.721Z",
-  "id": "ZuSO0u1CL3S7gkXk",
+  "createdAt": "2023-12-19T12:50:08.990Z",
+  "id": "tDQk6GRBt1RWJeYC",
   "meta": null,
   "name": "Sonarr Check Updates",
   "nodes": [
@@ -48,22 +47,18 @@
         "genericAuthType": "httpQueryAuth",
         "options": {}
       },
-      "id": "85d513fd-03ef-471f-985e-76e4ed13b1fc",
+      "id": "39625b3e-4332-47e5-b74f-a27675ab72a4",
       "name": "HTTP Request",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1020,
-        360
+        920,
+        640
       ],
       "credentials": {
-        "httpCustomAuth": {
-          "id": "LKPnYbpUSvDan7MG",
-          "name": "Custom Auth account"
-        },
         "httpQueryAuth": {
-          "id": "Q2gG6YQCr1w2lH5G",
-          "name": "Sonarr"
+          "id": "mVPjXlY1DAeKXUGi",
+          "name": "Sonarr Api"
         }
       }
     },
@@ -74,16 +69,16 @@
       "name": "Only get new RSS",
       "type": "n8n-nodes-base.function",
       "position": [
-        560,
-        180
+        460,
+        460
       ],
       "typeVersion": 1,
-      "id": "1bc7f2df-0717-4d0b-9560-dc230d5b28c1",
+      "id": "dbc256b0-b020-49f2-b5d4-c09453cbb507",
       "disabled": true
     },
     {
       "parameters": {
-        "channelId": "1122879436795166853",
+        "channelId": "1040258738927452280",
         "embed": true,
         "title": "=Sonarr New Update Version {{ $json[\"version\"] }}",
         "url": "={{ $json[\"url\"] }}",
@@ -97,17 +92,17 @@
         "botActivity": "Nothing",
         "botActivityType": 3
       },
-      "id": "54af9f4f-7286-481b-bb98-0362fa5dbd7b",
+      "id": "0f67d8e2-3d1f-471c-b6f4-c71ff5fa8897",
       "name": "Discord Send",
       "type": "n8n-nodes-discord-fork.discord",
       "typeVersion": 1,
       "position": [
-        1460,
-        340
+        1360,
+        620
       ],
       "credentials": {
         "discordApi": {
-          "id": "yFh4KghxV1AtVSDF",
+          "id": "pMpClPZ0113ZS7QO",
           "name": "Discord App account"
         }
       }
@@ -127,13 +122,13 @@
           ]
         }
       },
-      "id": "a8a9162f-eff4-40d2-b685-aed349903eb5",
+      "id": "831dcd57-e3bf-4ac7-9e5a-c5edc524ceac",
       "name": "IF",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1200,
-        360
+        1100,
+        640
       ]
     },
     {
@@ -147,12 +142,12 @@
           ]
         }
       },
-      "id": "e75a7323-e0da-4034-ad43-58f93746b24e",
+      "id": "4e4249b9-0f6a-42db-a613-176574a26402",
       "name": "Every 12 hours",
       "type": "n8n-nodes-base.cron",
       "position": [
-        820,
-        360
+        720,
+        640
       ],
       "typeVersion": 1
     }
@@ -163,11 +158,11 @@
     "timezone": "America/Sao_Paulo",
     "saveManualExecutions": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "aSBBM637H6nv57t8"
+    "errorWorkflow": "e5gs9CPtjGB5lx52"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-11-17T17:33:29.203Z",
-  "versionId": "0a9d114b-72c0-4ad2-870f-49fcef749397"
+  "updatedAt": "2023-12-19T13:14:18.641Z",
+  "versionId": "e1f0b68b-cce7-4f70-96b0-6e69213c37b6"
 }
