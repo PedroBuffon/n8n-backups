@@ -13,20 +13,20 @@
       ]
     }
   },
-  "createdAt": "2023-09-27T13:36:55.687Z",
-  "id": "aSBBM637H6nv57t8",
+  "createdAt": "2023-12-19T12:48:17.085Z",
+  "id": "e5gs9CPtjGB5lx52",
   "meta": null,
   "name": "Error workflow",
   "nodes": [
     {
       "parameters": {},
-      "id": "5f44811f-e46d-49db-b283-7ef2d0d16cf9",
+      "id": "8e212a80-770f-40e5-a95b-5b41dcc9aacb",
       "name": "Error Trigger",
       "type": "n8n-nodes-base.errorTrigger",
       "typeVersion": 1,
       "position": [
-        400,
-        360
+        460,
+        460
       ]
     },
     {
@@ -38,26 +38,26 @@
         "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"execution\"][\"error\"][\"message\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"N8N Error Log\",\n        \"url\": \"http://177.66.30.74:5678/\"\n      },\n      \"title\": \"{{ $json[\"workflow\"][\"name\"] }}\",\n      \"url\": \"{{ $json[\"execution\"][\"url\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
         "options": {}
       },
-      "id": "9cc7434c-0660-47b2-b840-4da1d0c0441c",
+      "id": "4e6dd43f-2513-45ab-b3e6-eaf8996fff8a",
       "name": "Discord Notification",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        600,
-        360
+        660,
+        460
       ]
     }
   ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1",
-    "timezone": "America/Sao_Paulo",
     "saveManualExecutions": true,
-    "callerPolicy": "workflowsFromSameOwner"
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "e5gs9CPtjGB5lx52"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-09-27T15:04:39.787Z",
-  "versionId": "88280653-7c1e-4da7-977e-8c6b649cd81e"
+  "updatedAt": "2023-12-19T12:48:35.206Z",
+  "versionId": "e6aec97c-be08-495e-a857-84d10b2217d9"
 }
