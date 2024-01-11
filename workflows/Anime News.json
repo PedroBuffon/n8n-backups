@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "Discord Send",
+            "node": "Discord",
             "type": "main",
             "index": 0
           }
@@ -273,32 +273,48 @@
     },
     {
       "parameters": {
-        "channelId": "1058807311877034124",
-        "embed": true,
-        "title": "={{ $json[\"title\"] }}",
-        "url": "={{ $json[\"link\"] }}",
-        "authorName": "=Anime News Network | Category: {{ $json[\"categories\"][0]}}",
-        "authorUrl": "https://www.animenewsnetwork.com/",
-        "description": "={{ $json[\"contentSnippet\"] }}",
-        "imageUrl": "={{ $json[\"imgURL\"] }}",
-        "footerText": "Powered By n8n",
-        "timestamp": "={{ $json[\"Date\"] }}",
-        "botCustomization": true,
-        "botActivity": "Nothing",
-        "botActivityType": 3
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1031684489610539070",
+          "mode": "list",
+          "cachedResultName": "Buffon Gaming",
+          "cachedResultUrl": "https://discord.com/channels/1031684489610539070"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1058807311877034124",
+          "mode": "list",
+          "cachedResultName": "anime-news",
+          "cachedResultUrl": "https://discord.com/channels/1031684489610539070/1058807311877034124"
+        },
+        "content": "=",
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "={{ $json.title }}",
+              "author": "=Anime News Network | Category: {{ $json[\"categories\"][0]}}",
+              "timestamp": "={{ $json.Date }}",
+              "title": "={{ $json[\"title\"] }}",
+              "url": "={{ $json[\"link\"] }}",
+              "image": "={{ $json.imgURL }}"
+            }
+          ]
+        }
       },
-      "id": "10fe5630-20d1-4365-a876-53a083cc031e",
-      "name": "Discord Send",
-      "type": "n8n-nodes-discord-fork.discord",
-      "typeVersion": 1,
+      "id": "7b8bfe3b-cae1-4613-86b7-8001503c5596",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
       "position": [
-        1240,
+        1220,
         620
       ],
       "credentials": {
-        "discordApi": {
-          "id": "pMpClPZ0113ZS7QO",
-          "name": "Discord App account"
+        "discordBotApi": {
+          "id": "rDDfwhjEYYje2XSn",
+          "name": "Discord Bot account"
         }
       }
     }
@@ -317,6 +333,24 @@
     },
     "global": {
       "oldRSSIds": [
+        "Wed, 10 Jan 2024 20:43:29 -0500",
+        "Wed, 10 Jan 2024 20:30:03 -0500",
+        "Wed, 10 Jan 2024 19:00:00 -0500",
+        "Wed, 10 Jan 2024 18:00:00 -0500",
+        "Wed, 10 Jan 2024 17:00:00 -0500",
+        "Wed, 10 Jan 2024 16:31:48 -0500",
+        "Wed, 10 Jan 2024 16:00:00 -0500",
+        "Wed, 10 Jan 2024 15:00:00 -0500",
+        "Wed, 10 Jan 2024 14:00:00 -0500",
+        "Wed, 10 Jan 2024 13:30:00 -0500",
+        "Wed, 10 Jan 2024 12:37:52 -0500",
+        "Wed, 10 Jan 2024 11:26:43 -0500",
+        "Wed, 10 Jan 2024 11:00:25 -0500",
+        "Wed, 10 Jan 2024 10:24:04 -0500",
+        "Wed, 10 Jan 2024 06:13:26 -0500",
+        "Tue, 09 Jan 2024 22:50:32 -0500",
+        "Tue, 09 Jan 2024 22:43:41 -0500",
+        "Tue, 09 Jan 2024 20:44:18 -0500",
         "Tue, 09 Jan 2024 19:45:00 -0500",
         "Tue, 09 Jan 2024 17:00:00 -0500",
         "Tue, 09 Jan 2024 15:30:00 -0500",
@@ -632,6 +666,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-01-10T02:30:01.120Z",
-  "versionId": "fb3aff55-25e0-4650-859b-a202d79ab3e8"
+  "updatedAt": "2024-01-11T03:00:00.651Z",
+  "versionId": "90108bc5-60c6-46a2-88d0-0eb80115f50c"
 }
