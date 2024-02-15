@@ -15,7 +15,9 @@
   },
   "createdAt": "2023-12-19T12:48:17.085Z",
   "id": "e5gs9CPtjGB5lx52",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Error workflow",
   "nodes": [
     {
@@ -35,7 +37,7 @@
         "url": "https://discord.com/api/webhooks/1134662352969683036/6TEEKh2hwKT8Enuupn_H_nlKxe5keMk6AeG3uoUoAfSwgbpGipHwNelSk7Pxl_vmHwmy",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"execution\"][\"error\"][\"message\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"N8N Error Log\",\n        \"url\": \"http://177.66.30.74:5678/\"\n      },\n      \"title\": \"{{ $json[\"workflow\"][\"name\"] }}\",\n      \"url\": \"{{ $json[\"execution\"][\"url\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
+        "jsonBody": "={\n  \"embeds\": [\n    {\n      \"description\": \"{{ $json[\"execution\"][\"error\"][\"message\"] }}\",\n      \"fields\": [],\n      \"author\": {\n        \"name\": \"N8N Error Log\",\n        \"url\": \"https://n8n.buffon.cloud/\"\n      },\n      \"title\": \"{{ $json[\"workflow\"][\"name\"] }}\",\n      \"url\": \"{{ $json[\"execution\"][\"url\"] }}\",\n      \"image\": {\n        \"url\": \"{{ $json[\"imgURL\"] }}\"\n      },\n      \"footer\": {\n        \"text\": \"Powered By n8n\"\n      }\n    }\n  ]\n}",
         "options": {}
       },
       "id": "4e6dd43f-2513-45ab-b3e6-eaf8996fff8a",
@@ -58,6 +60,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2023-12-19T12:48:35.206Z",
-  "versionId": "e6aec97c-be08-495e-a857-84d10b2217d9"
+  "updatedAt": "2024-02-14T21:56:58.238Z",
+  "versionId": "e18e5412-faed-4c57-b093-1938cce53095"
 }
