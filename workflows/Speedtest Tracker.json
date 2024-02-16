@@ -1,0 +1,183 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-15T15:38:46.977Z",
+  "id": "R15oYyHi0ZapRAf6",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Speedtest Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3f51b9ff-4469-4e21-952c-0988932bea89",
+        "options": {}
+      },
+      "id": "85b5f81b-4636-4a4b-84a4-99e8f05bad52",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        360
+      ],
+      "webhookId": "3f51b9ff-4469-4e21-952c-0988932bea89"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and modify the 'download' and 'upload' fields in the JSON of each one\nfor (const item of $input.all()) {\n    const speedtest = item.json.speedtest;\n\n    // Modify download and upload values\n    speedtest.download = formatValue(speedtest.download);\n    speedtest.upload = formatValue(speedtest.upload);\n}\n\nreturn $input.all();\n\n// Format value function\nfunction formatValue(value) {\n    // Convert value to number, divide by 1,000,000, and round to two decimal places\n    return (parseFloat(value) / 1000000).toFixed(2);\n}"
+      },
+      "id": "3e88ac75-b617-4a82-ba74-320a464fa885",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "speedtest",
+              "type": "objectValue",
+              "objectValue": "={{ $json.body }}"
+            }
+          ]
+        },
+        "include": "none",
+        "options": {}
+      },
+      "id": "9045af50-31d5-49f4-9903-3bdc7d70699e",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        660,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1031684489610539070",
+          "mode": "list",
+          "cachedResultName": "Buffon Gaming",
+          "cachedResultUrl": "https://discord.com/channels/1031684489610539070"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1040258738927452280",
+          "mode": "list",
+          "cachedResultName": "server-updates",
+          "cachedResultUrl": "https://discord.com/channels/1031684489610539070/1040258738927452280"
+        },
+        "options": {},
+        "embeds": {
+          "values": [
+            {
+              "description": "=```\nTest ID: {{ $json[\"speedtest\"][\"result_id\"] }}\nPing: {{ $json[\"speedtest\"][\"ping\"] }} ms\nDownload: {{ $json[\"speedtest\"][\"download\"] }} Mbps\nUpload: {{ $json[\"speedtest\"][\"upload\"] }} Mbps\n```",
+              "author": "=",
+              "color": "#FBBF24",
+              "timestamp": "={{ $json.currentDate }}",
+              "title": "={{ $json.speedtest.site_name }}",
+              "url": "https://speedtest.buffon.cloud/"
+            }
+          ]
+        }
+      },
+      "id": "2fd95a40-2117-400d-a488-008013ce8394",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        360
+      ],
+      "credentials": {
+        "discordBotApi": {
+          "id": "rDDfwhjEYYje2XSn",
+          "name": "Discord Bot account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "includeInputFields": true,
+          "timezone": "America/Sao_Paulo"
+        }
+      },
+      "id": "03925996-1c6d-470d-b6f1-574ce5f583ad",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "e5gs9CPtjGB5lx52"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-15T16:16:32.654Z",
+  "versionId": "5a31d63d-ff8f-4beb-85f8-0ae3b6e91767"
+}
